@@ -1,38 +1,59 @@
 eventListener()
-animate()
-changeSceneCheck = false
+animateBattle()
+// animate()
+
+//--------------------------------------------------------------
 
 function animate() {
-    requestAnimationFrame(animate)
+    let animationId = requestAnimationFrame(animate)
 
-    // background.draw()
-    //
-    // arrayToRenderer(boundaries)
-    //
-    // arrayToRenderer(battleZones)
-    //
-    // player.draw()
-    //
-    // foreground.draw()
-    //
+    background.draw()
 
-    // if (battle) {
-    // if (document.getElementById('cover').style.opacity == 1) {
-    //     changeSceneCheck = true
-    //     gsap.to('#cover', {duration: 0.5, opacity: 0})
-    // }
-    // if (changeSceneCheck) {
-    displayBattleScene()
+    arrayToRenderer(boundaries)
 
-    // }
-    //     return
-    // }
-    //
-    // player.update()
-    //
-    // activeBattle()
+    arrayToRenderer(battleZones)
+
+    player.draw()
+
+    foreground.draw()
+
+
+    player.update()
+
+    activeBattle()
+
+    if (battle) {
+        console.log('active battle')
+        window.cancelAnimationFrame(animationId)
+    }
 }
 
+//Battle Scene -------------------------------------------------
+
+function animateBattle() {
+    let animationBattleId = requestAnimationFrame(animateBattle)
+
+    displayBattleScene()
+
+    document.querySelectorAll('button').forEach(button => {
+        button.addEventListener('click', e => {
+            client.click = true
+        })
+    })
+
+    if(client.click) {
+        emby.attack({
+            attack:{},
+            target: draggle
+        })
+    }
+
+    if (!battle) {
+        window.cancelAnimationFrame(animationBattleId)
+        animate()
+    }
+    client.click = false
+}
 
 //Functions-----------------------------------------------------
 
@@ -57,10 +78,26 @@ function activeBattle() {
             && player.position.y + player.height > zone.position.y
             && player.position.y + player.height < zone.position.y + zone.height + 3
         ) {
-            if (player.moving) { //& Math.random() < 0.1
-                console.log('battle')
+            if (player.animate && Math.random() < 0.5) {
                 battle = true
-                gsap.to('#cover', {duration: 0.5, opacity: 1})
+                gsap.to('#overlap', {
+                    opacity: 1,
+                    duration: 0.3,
+                    repeat: 3,
+                    yoyo: true,
+                    onComplete() {
+                        gsap.to('#overlap', {
+                            opacity: 1,
+                            onComplete() {
+                                gsap.to('#overlap', {
+                                    opacity: 0,
+                                    delay: 0.4
+                                })
+                                animateBattle()
+                            }
+                        })
+                    }
+                })
             }
         }
     })
@@ -69,6 +106,9 @@ function activeBattle() {
 function eventListener() {
     window.addEventListener('keydown', e => {
         switch (e.key) {
+            case 'Tab':
+                e.preventDefault()
+                break
             case 'w':
                 keys.w = true
                 break
@@ -106,9 +146,12 @@ function eventListener() {
         client.x = e.clientX - 10
         client.y = e.clientY - 10
     })
-    window.addEventListener('click', e => {
-        client.click = true
-    })
+    // window.addEventListener('click', e => {
+    //     if (e.srcElement.type === 'submit') {
+    //         e.srcElement.blur()
+    //     }
+    //     client.click = true
+    // })
 }
 
 //Test------------------------------------------------------------
@@ -116,12 +159,8 @@ function eventListener() {
 function displayBattleScene() {
 
     c.drawImage(battleBackgroundImage, 0, 0)
-    draggle.draw(position.enemy.x, position.enemy.y, position.enemy.scale)
-    emby.draw(position.player.x, position.player.y, position.player.scale)
 
-    battleButton.forEach((button,i) => {
-        button.update()
-    })
-    client.click = false
+    draggle.draw()
+    emby.draw()
 
 }

@@ -1,18 +1,168 @@
-<div style="display: inline-flex; position: absolute">
-    <div id="cover" style="background-color: black; position: absolute;top: 0;left: 0;right: 0;bottom: 0; opacity: 0"></div>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        button {
+            border: 0;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #ccc;
+        }
+
+        h1 {
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<div style="display: inline-block; position: absolute">
+
+    <div id="overlap"
+         style="
+            background-color: black;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0
+            "
+    >
+    </div>
+
+    <!---------------------------------------------------TOP------------------------------------------------------------->
+
+    <div style="
+            display: flex;
+            top:0;
+            left:0;
+            right:0;
+            position: absolute;
+            height: 433px;
+            border: 3px solid black
+            "
+    >
+        <!--------------------------------------------Infor Box--------------------------------------------------------->
+        <div style="
+                position: absolute;
+                background-color: white;
+                border: 3px solid dimgray;
+                padding: 5px 12px;
+                width: 250px;
+                top: 50px;
+                left: 50px
+                "
+        >
+            <h1>Draggle</h1>
+
+            <!------------------------------------Health-Bar----------------------------------->
+            <div style="position: relative">
+                <div style="background-color: #ccc; height: 5px; margin: 10px"></div>
+                <div style="
+                        position: absolute;
+                        background-color: red;
+                        height: 5px;
+                        margi-top: 10px;
+                        top:0;left:0;right:0"></div>
+            </div>
+            <!------------------------------------Health-Bar----------------------------------->
+
+        </div>
+
+
+        <div style="
+                position: absolute;
+                background-color: white;
+                border: 3px solid dimgray;
+                padding: 5px 12px;
+                width: 250px;
+                bottom: 50px;
+                right: 50px;
+                text-align: right
+                "
+        >
+
+            <h1>Emby</h1>
+
+            <!------------------------------------Health-Bar----------------------------------->
+            <div style="position: relative">
+                <div style="background-color: #ccc; height: 5px; margin: 10px"></div>
+                <div style="
+                        position: absolute;
+                        background-color: green;
+                        height: 5px;
+                        margi-top: 10px;
+                        top:0;left:0;right:0"></div>
+            </div>
+            <!-------------------------------------Health-Bar----------------------------------->
+
+        </div>
+        <!----------------------------------------------Infor Box------------------------------------------------------->
+
+    </div>
+
+    <!---------------------------------------------------TOP------------------------------------------------------------->
+
     <canvas style="border: 3px solid #707070"></canvas>
+
+    <!--------------------------------------------------BOTTOM----------------------------------------------------------->
+
+    <div style="
+            display: flex;
+            position: absolute;
+            bottom: 0;
+            background-color: white;
+            left: 0;
+            right: 0;
+            height: 140px;
+            border: 3px solid dimgray
+            "
+    >
+        <!-----------------------------------------------ATTACK------------------------------------------------------>
+
+        <div style="
+                width: 66.66%;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr)
+                "
+        >
+            <button>Tackle</button>
+            <button>Skill</button>
+        </div>
+
+        <div style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 33.33%;
+                border-left: 3px solid dimgray
+                "
+        >
+            <h1>Attack Type</h1>
+        </div>
+
+        <!-----------------------------------------------ATTACK------------------------------------------------------>
+
+    </div>
+
 </div>
 
+<!--------------------------------------------------BOTTOM----------------------------------------------------------->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js" integrity="sha512-VEBjfxWUOyzl0bAwh4gdLEaQyDYPvLrZql3pw1ifgb6fhEvZl9iDDehwHZ+dsMzA0Jfww8Xt7COSZuJ/slxc4Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"
+        integrity="sha512-VEBjfxWUOyzl0bAwh4gdLEaQyDYPvLrZql3pw1ifgb6fhEvZl9iDDehwHZ+dsMzA0Jfww8Xt7COSZuJ/slxc4Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script src="data/mapData.js"></script>
 
 <script src="classes.js"></script>
 <script src="generate.js"></script>
 <script src="system.js"></script>
-
-<script>
-
-
-</script>
