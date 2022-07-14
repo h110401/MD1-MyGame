@@ -6,26 +6,14 @@
 </head>
 <body>
 
-<canvas></canvas>
 
-<img src="image/background.png"
-     style="transform-origin: top left; transform: scale(4);image-rendering: pixelated">
+<img id="test" src="image/background.png" style="transform-origin: top left">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js" integrity="sha512-VEBjfxWUOyzl0bAwh4gdLEaQyDYPvLrZql3pw1ifgb6fhEvZl9iDDehwHZ+dsMzA0Jfww8Xt7COSZuJ/slxc4Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
 
-    const canvas = document.querySelector('canvas')
-    const c = canvas.getContext('2d')
-    canvas.width = 1024
-    canvas.height = 576
-
-    const backgroundImage = document.querySelector('img')
-
-    console.log(backgroundImage)
-
-    window.onload = () => {
-        c.imageSmoothingEnabled = false;
-        c.drawImage(backgroundImage, 0, 0, backgroundImage.width * 4, backgroundImage.height * 4)
-    }
+    gsap.to('#test', {duration: 2, x: 300})
 
 </script>
 

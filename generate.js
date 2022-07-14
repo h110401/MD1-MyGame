@@ -5,7 +5,7 @@ const c = canvas.getContext('2d')
 canvas.width = 1024
 canvas.height = 576
 
-const offset = {x: -740, y: -650}
+const OFFSET = {x: -740, y: -650}
 //---------------------------------------------------------------------------
 
 
@@ -15,8 +15,8 @@ backgroundImage.src = 'image/background.png'
 const background = new Sprite({
     image: backgroundImage,
     position: {
-        x: offset.x,
-        y: offset.y,
+        x: OFFSET.x,
+        y: OFFSET.y,
     }
 })
 
@@ -55,10 +55,11 @@ foregroundImage.src = 'image/foreground.png'
 const foreground = new Sprite({
     image: foregroundImage,
     position: {
-        x: offset.x,
-        y: offset.y
+        x: OFFSET.x,
+        y: OFFSET.y
     }
 })
+
 //Pokemon--------------------------------------------------------------------
 
 const draggleImage = new Image()
@@ -81,19 +82,62 @@ const emby = new Pokemon({
 
 //---------------------------------------------------------------------------
 
+const attackButtonImage = new Image()
+attackButtonImage.src = 'image/button/attackButton.png'
+const attackButton = new Button({
+    image: attackButtonImage,
+    position: {
+        x: 0,
+        y: canvas.height - attackButtonImage.height * 4
+    }
+})
+const skillButtonImage = new Image()
+skillButtonImage.src = 'image/button/skillButton.png'
+const skillButton = new Button({
+    image: skillButtonImage,
+    position: {
+        x: skillButtonImage.width * 4,
+        y: canvas.height - skillButtonImage.height * 4
+    }
+})
+const itemButtonImage = new Image()
+itemButtonImage.src = 'image/button/itemButton.png'
+const itemButton = new Button({
+    image: itemButtonImage,
+    position: {
+        x: itemButtonImage.width * 4 * 2,
+        y: canvas.height - itemButtonImage.height * 4
+    }
+})
+const runButtonImage = new Image()
+runButtonImage.src = 'image/button/runButton.png'
+const runButton = new Button({
+    image: runButtonImage,
+    position: {
+        x: runButtonImage.width * 4 * 3,
+        y: canvas.height - runButtonImage.height * 4
+    }
+})
 
 //System-Element-------------------------------------------------------------
 const position = {
     enemy: {
-        x: 790,
-        y: 100
+        x: 795,
+        y: 90,
+        scale: 1.5
     },
     player: {
-        x: 290,
-        y: 330
+        x: 270,
+        y: 290,
+        scale: 2
     }
 }
 
+const client = {
+    x: 0,
+    y: 0,
+    click: false,
+}
 
 const keys = {
     w: false,
@@ -107,6 +151,8 @@ let boundaries = arrayMapToPosition(collisionMap, Boundary)
 let battleZones = arrayMapToPosition(battleZoneMap, Boundary)
 
 let battle = false
+
+const battleButton = [attackButton, skillButton, itemButton, runButton]
 
 const moveables = [background, foreground, ...battleZones, ...boundaries]
 
@@ -123,8 +169,8 @@ function arrayMapToPosition(array, className) {
             if (element === 1025) {
                 arrayReturn.push(new className({
                     position: {
-                        x: j * className.width + offset.x,
-                        y: i * className.height + offset.y
+                        x: j * className.width + OFFSET.x,
+                        y: i * className.height + OFFSET.y
                     }
                 }))
             }

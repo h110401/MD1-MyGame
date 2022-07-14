@@ -1,29 +1,36 @@
-moveListener()
+eventListener()
 animate()
+changeSceneCheck = false
 
 function animate() {
     requestAnimationFrame(animate)
 
-    background.draw()
+    // background.draw()
+    //
+    // arrayToRenderer(boundaries)
+    //
+    // arrayToRenderer(battleZones)
+    //
+    // player.draw()
+    //
+    // foreground.draw()
+    //
 
-    arrayToRenderer(boundaries)
+    // if (battle) {
+    // if (document.getElementById('cover').style.opacity == 1) {
+    //     changeSceneCheck = true
+    //     gsap.to('#cover', {duration: 0.5, opacity: 0})
+    // }
+    // if (changeSceneCheck) {
+    displayBattleScene()
 
-    arrayToRenderer(battleZones)
-
-    player.draw()
-
-    foreground.draw()
-
-    if (battle) {
-        c.drawImage(battleBackgroundImage, 0, 0)
-        draggle.draw(position.enemy.x, position.enemy.y)
-        emby.draw(position.player.x, position.player.y)
-        return
-    }
-
-    player.update()
-
-    activeBattle()
+    // }
+    //     return
+    // }
+    //
+    // player.update()
+    //
+    // activeBattle()
 }
 
 
@@ -50,16 +57,16 @@ function activeBattle() {
             && player.position.y + player.height > zone.position.y
             && player.position.y + player.height < zone.position.y + zone.height + 3
         ) {
-            if (player.moving & Math.random() < 0.1) {
+            if (player.moving) { //& Math.random() < 0.1
                 console.log('battle')
                 battle = true
-
+                gsap.to('#cover', {duration: 0.5, opacity: 1})
             }
         }
     })
 }
 
-function moveListener() {
+function eventListener() {
     window.addEventListener('keydown', e => {
         switch (e.key) {
             case 'w':
@@ -93,9 +100,28 @@ function moveListener() {
                 break
         }
     })
+
+
+    window.addEventListener('mousemove', e => {
+        client.x = e.clientX - 10
+        client.y = e.clientY - 10
+    })
+    window.addEventListener('click', e => {
+        client.click = true
+    })
 }
 
 //Test------------------------------------------------------------
-function drawPokemon(player, enemy) {
+
+function displayBattleScene() {
+
+    c.drawImage(battleBackgroundImage, 0, 0)
+    draggle.draw(position.enemy.x, position.enemy.y, position.enemy.scale)
+    emby.draw(position.player.x, position.player.y, position.player.scale)
+
+    battleButton.forEach((button,i) => {
+        button.update()
+    })
+    client.click = false
 
 }

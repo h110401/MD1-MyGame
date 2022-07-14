@@ -2,6 +2,10 @@ class Sprite {
     constructor({image, position}) {
         this.image = image
         this.position = position
+        this.image.onload = () => {
+            this.width = this.image.width * 4
+            this.height = this.image.height * 4
+        }
     }
 
     draw() {
@@ -26,7 +30,8 @@ class Pokemon {
         }
     }
 
-    draw(x,y) {
+    draw(x, y, rate) {
+        c.imageSmoothingEnabled = false
         c.drawImage(
             this.image,
             this.frames.index * this.width,
@@ -35,8 +40,8 @@ class Pokemon {
             this.height,
             x,
             y,
-            this.width,
-            this.height,
+            this.width * 4 * rate,
+            this.height * 4 * rate
         )
 
         this.frames.timePerFrame++
@@ -77,7 +82,7 @@ class Player extends Sprite {
             this.position.x,
             this.position.y,
             this.width,
-            this.height,
+            this.height
         )
         if (!this.moving) {
             this.frames.index = 0
@@ -157,4 +162,30 @@ class Boundary {
         c.fillStyle = 'rgb(255,0,0,0.2)'
         c.fillRect(this.position.x, this.position.y, Boundary.height, Boundary.width)
     }
+}
+
+class Button extends Sprite {
+    constructor({image, position}) {
+        super({image, position});
+        this.image.onload = () => {
+            this.width = this.image.width
+            this.height = this.image.height
+        }
+    }
+
+    update() {
+        this.draw()
+        if (this.clickCheck()) {
+            console.log('active')
+        }
+    }
+
+    clickCheck() {
+        return client.x > this.position.x
+            && client.x < this.position.x + this.width * 4
+            && client.y > this.position.y
+            && client.y < this.position.y + this.height * 4
+            && client.click
+    }
+
 }
