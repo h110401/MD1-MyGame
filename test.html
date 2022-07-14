@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<canvas></canvas>
+
+<img src="image/background.png"
+     style="transform-origin: top left; transform: scale(4);image-rendering: pixelated">
+
+<script>
+
+    const canvas = document.querySelector('canvas')
+    const c = canvas.getContext('2d')
+    canvas.width = 1024
+    canvas.height = 576
+
+    const backgroundImage = document.querySelector('img')
+
+    console.log(backgroundImage)
+
+    window.onload = () => {
+        c.imageSmoothingEnabled = false;
+        c.drawImage(backgroundImage, 0, 0, backgroundImage.width * 4, backgroundImage.height * 4)
+    }
+
+</script>
+
+</body>
+</html>

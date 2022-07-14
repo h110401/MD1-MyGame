@@ -5,29 +5,66 @@ class Sprite {
     }
 
     draw() {
+        c.imageSmoothingEnabled = false;
         c.drawImage(
             this.image,
             this.position.x,
             this.position.y,
-            this.image.width,
-            this.image.height,
+            this.image.width * 4,
+            this.image.height * 4,
         )
     }
 }
 
-class Player{
-
-    constructor({image, position, frames = {max: 1}, sprites, velocity}) {
+class Pokemon {
+    constructor({image, frames = {max: 1}}) {
         this.image = image
-        this.position = position
         this.frames = {...frames, index: 0, timePerFrame: 10}
         this.image.onload = () => {
             this.width = this.image.width / this.frames.max
             this.height = this.image.height
         }
+    }
+
+    draw(x,y) {
+        c.drawImage(
+            this.image,
+            this.frames.index * this.width,
+            0,
+            this.width,
+            this.height,
+            x,
+            y,
+            this.width,
+            this.height,
+        )
+
+        this.frames.timePerFrame++
+
+        if (this.frames.timePerFrame % 10 === 0) {
+            if (this.frames.index < this.frames.max - 1) {
+                this.frames.index++
+            } else {
+                this.frames.index = 0
+            }
+            this.frames.timePerFrame = 0
+        }
+    }
+}
+
+class Player extends Sprite {
+
+    constructor({image, position, frames = {max: 1}, sprites, velocity = {x: 0, y: 0}}) {
+        super({image, position})
+        this.frames = {...frames, index: 0, timePerFrame: 10}
         this.sprites = sprites
-        this.moving = false
         this.velocity = velocity
+
+        this.moving = false
+        this.image.onload = () => {
+            this.width = this.image.width / this.frames.max
+            this.height = this.image.height
+        }
     }
 
     draw() {
@@ -47,30 +84,20 @@ class Player{
             return
         }
         if (this.frames.max > 1) this.frames.timePerFrame++
+
         if (this.frames.timePerFrame % 10 === 0) {
-            if (this.frames.index < this.frames.max - 1) this.frames.index++
-            else this.frames.index = 0
+            if (this.frames.index < this.frames.max - 1) {
+                this.frames.index++
+            } else {
+                this.frames.index = 0
+            }
             this.frames.timePerFrame = 0
         }
     }
 
     update() {
 
-        boundaries.forEach(boundary => {
-            if (this.playerCheckCollision(boundary)) {
-                this.velocity.x = 0
-                this.velocity.y = 0
-            }
-        })
-
-        moveables.forEach(moveable => {
-            moveable.position.x += this.velocity.x;
-            moveable.position.y += this.velocity.y;
-        })
-
         this.moving = false
-        this.velocity.x = 0
-        this.velocity.y = 0
 
         if (keys.w) {
             this.image = this.sprites.up
@@ -89,6 +116,21 @@ class Player{
             this.moving = true
             this.velocity.x = -3
         }
+
+        boundaries.forEach(boundary => {
+            if (this.playerCheckCollision(boundary)) {
+                this.velocity.x = 0
+                this.velocity.y = 0
+            }
+        })
+
+        moveables.forEach(moveable => {
+            moveable.position.x += this.velocity.x;
+            moveable.position.y += this.velocity.y;
+        })
+
+        this.velocity.x = 0
+        this.velocity.y = 0
 
     }
 
@@ -114,21 +156,5 @@ class Boundary {
     draw() {
         c.fillStyle = 'rgb(255,0,0,0.2)'
         c.fillRect(this.position.x, this.position.y, Boundary.height, Boundary.width)
-    }
-}
-
-class BattleZone {
-    static width = 48
-    static height = 48
-
-    constructor({position}) {
-        this.position = position
-        this.width = 48
-        this.height = 48
-    }
-
-    draw() {
-        c.fillStyle = 'rgb(0,255,0,0.2)'
-        c.fillRect(this.position.x, this.position.y, BattleZone.height, BattleZone.width)
     }
 }

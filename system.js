@@ -14,13 +14,16 @@ function animate() {
 
     foreground.draw()
 
+    if (battle) {
+        c.drawImage(battleBackgroundImage, 0, 0)
+        draggle.draw(position.enemy.x, position.enemy.y)
+        emby.draw(position.player.x, position.player.y)
+        return
+    }
+
     player.update()
 
-    battleZones.forEach(zone => {
-        if (checkCollision(zone)) {
-            console.log('battle')
-        }
-    })
+    activeBattle()
 }
 
 
@@ -39,6 +42,22 @@ function checkCollision(item) {
         item.position.y + item.width / 4 >= player.position.y
 }
 
+function activeBattle() {
+    battleZones.forEach(zone => {
+        if (checkCollision(zone)
+            && player.position.x > zone.position.x
+            && player.position.x + player.width < zone.position.x + zone.width + 3
+            && player.position.y + player.height > zone.position.y
+            && player.position.y + player.height < zone.position.y + zone.height + 3
+        ) {
+            if (player.moving & Math.random() < 0.1) {
+                console.log('battle')
+                battle = true
+
+            }
+        }
+    })
+}
 
 function moveListener() {
     window.addEventListener('keydown', e => {
@@ -74,4 +93,9 @@ function moveListener() {
                 break
         }
     })
+}
+
+//Test------------------------------------------------------------
+function drawPokemon(player, enemy) {
+
 }

@@ -20,6 +20,9 @@ const background = new Sprite({
     }
 })
 
+const battleBackgroundImage = new Image()
+battleBackgroundImage.src = 'image/battleBackground.png'
+
 
 const playerImageUp = new Image()
 playerImageUp.src = 'image/playerUp.png'
@@ -43,10 +46,6 @@ const player = new Player({
         down: playerImageDown,
         left: playerImageLeft,
         right: playerImageRight,
-    },
-    velocity: {
-        x: 0,
-        y: 0
     }
 })
 
@@ -60,10 +59,42 @@ const foreground = new Sprite({
         y: offset.y
     }
 })
+//Pokemon--------------------------------------------------------------------
+
+const draggleImage = new Image()
+draggleImage.src = 'image/draggleSprite.png'
+const draggle = new Pokemon({
+    image: draggleImage,
+    frames: {
+        max: 4
+    }
+})
+
+const embyImage = new Image()
+embyImage.src = 'image/embySprite.png'
+const emby = new Pokemon({
+    image: embyImage,
+    frames: {
+        max: 4
+    }
+})
+
 //---------------------------------------------------------------------------
 
 
 //System-Element-------------------------------------------------------------
+const position = {
+    enemy: {
+        x: 790,
+        y: 100
+    },
+    player: {
+        x: 290,
+        y: 330
+    }
+}
+
+
 const keys = {
     w: false,
     s: false,
@@ -73,8 +104,9 @@ const keys = {
 
 let boundaries = arrayMapToPosition(collisionMap, Boundary)
 
-let battleZones = arrayMapToPosition(battleZoneMap, BattleZone)
+let battleZones = arrayMapToPosition(battleZoneMap, Boundary)
 
+let battle = false
 
 const moveables = [background, foreground, ...battleZones, ...boundaries]
 
