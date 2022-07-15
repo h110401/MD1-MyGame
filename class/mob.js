@@ -1,11 +1,12 @@
 class Mob extends Sprite {
-    constructor({image, position, frames, animate, isEnemy = false, name}) {
+    constructor({image, position, frames, animate, isEnemy = false, name, attacks}) {
         super({image, position, frames, animate});
 
         this.isEnemy = isEnemy
 
         this.name = name
         this.health = 100
+        this.attacks = monster[this.name].attacks
     }
 
     attack({attack, target}) {
@@ -106,5 +107,16 @@ class Mob extends Sprite {
                 })
                 break
         }
+    }
+
+    faint() {
+        document.querySelector('#dialogueBox').innerHTML = this.name + ' fainted!'
+        gsap.to(this, {
+            opacity: 0
+        })
+        gsap.to(this.position, {
+            y: this.position.y + 40
+        })
+        this.animate = false
     }
 }

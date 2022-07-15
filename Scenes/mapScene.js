@@ -1,11 +1,16 @@
 eventListener()
 
+initBattle()
+animateBattle()
+
 // animate()
+
+let animationId
 
 //--------------------------------------------------------------
 
 function animate() {
-    let animationId = requestAnimationFrame(animate)
+    animationId = requestAnimationFrame(animate)
 
     background.draw()
 
@@ -22,11 +27,7 @@ function animate() {
 
     activeBattle()
 
-    if (battle) {
-        window.cancelAnimationFrame(animationId)
-    }
 }
-
 
 
 //Functions-----------------------------------------------------
@@ -52,8 +53,8 @@ function activeBattle() {
             && player.position.y + player.height > zone.position.y
             && player.position.y + player.height < zone.position.y + zone.height + 3
         ) {
+            console.log('asdasddas')
             if (player.animate && Math.random() < 0.5) {
-                battle = true
                 gsap.to('#overlap', {
                     opacity: 1,
                     duration: 0.3,
@@ -63,10 +64,13 @@ function activeBattle() {
                         gsap.to('#overlap', {
                             opacity: 1,
                             onComplete() {
+                                window.cancelAnimationFrame(animationId)
+
                                 gsap.to('#overlap', {
                                     opacity: 0,
                                     delay: 0.4
                                 })
+                                initBattle()
                                 animateBattle()
                             }
                         })
@@ -76,7 +80,6 @@ function activeBattle() {
         }
     })
 }
-
 
 
 function eventListener() {
@@ -117,11 +120,6 @@ function eventListener() {
         }
     })
 
-
-    window.addEventListener('mousemove', e => {
-        client.x = e.clientX - 10
-        client.y = e.clientY - 10
-    })
 }
 
 //Test------------------------------------------------------------

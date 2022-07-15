@@ -10,13 +10,9 @@ const offset = {x: -740, y: -650}
 
 //---------------------------------------------------------------------------
 
+
 //System-Element-------------------------------------------------------------
 
-const client = {
-    x: 0,
-    y: 0,
-    click: false,
-}
 
 const keys = {
     w: false,
@@ -29,27 +25,13 @@ let boundaries = arrayMapToPosition(collisionMap, Boundary)
 
 let battleZones = arrayMapToPosition(battleZoneMap, Boundary)
 
-const battlePosition = {
-    enemy: {
-        x: 795,
-        y: 90,
-        scale: 1.5
-    },
-    player: {
-        x: 270,
-        y: 290,
-        scale: 2
-    }
-}
-
-let battle = true
 
 //Images---------------------------------------------------------------------
 
-const backgroundImage = new Image()
-backgroundImage.src = 'image/background/background.png'
 const background = new Sprite({
-    image: backgroundImage,
+    image: {
+        scr: 'image/background/background.png'
+    },
     position: {
         x: offset.x,
         y: offset.y,
@@ -58,10 +40,10 @@ const background = new Sprite({
 })
 
 
-const foregroundImage = new Image()
-foregroundImage.src = 'image/background/foreground.png'
 const foreground = new Sprite({
-    image: foregroundImage,
+    image: {
+        src: 'image/background/foreground.png'
+    },
     position: {
         x: offset.x,
         y: offset.y,
@@ -74,17 +56,11 @@ const battleBackgroundImage = new Image()
 battleBackgroundImage.src = 'image/background/battleBackground.png'
 
 
-const playerImageUp = new Image()
-playerImageUp.src = 'image/player/playerUp.png'
-const playerImageDown = new Image()
-playerImageDown.src = 'image/player/playerDown.png'
-const playerImageLeft = new Image()
-playerImageLeft.src = 'image/player/playerLeft.png'
-const playerImageRight = new Image()
-playerImageRight.src = 'image/player/playerRight.png'
 
 const player = new Player({
-    image: playerImageDown,
+    image: {
+        src: 'image/player/playerUp.png'
+    },
     position: {
         x: canvas.width / 2 - 192 / 4 / 2,
         y: canvas.height / 2 - 68 / 2,
@@ -94,41 +70,21 @@ const player = new Player({
         hold: 10
     },
     sprites: {
-        up: playerImageUp,
-        down: playerImageDown,
-        left: playerImageLeft,
-        right: playerImageRight,
+        up: {
+            src: 'image/player/playerUp.png'
+        },
+        down: {
+            src: 'image/player/playerDown.png'
+        },
+        left: {
+            src: 'image/player/playerLeft.png'
+        },
+        right: {
+            src: 'image/player/playerRight.png'
+        },
     }
 })
 
-//Pokemon--------------------------------------------------------------------
-
-const draggleImage = new Image()
-draggleImage.src = 'image/mob/draggleSprite.png'
-const draggle = new Mob({
-    image: draggleImage,
-    position: battlePosition.enemy,
-    frames: {
-        max: 4,
-        hold: 20
-    },
-    animate: true,
-    isEnemy: true,
-    name: 'Draggle'
-})
-
-const embyImage = new Image()
-embyImage.src = 'image/mob/embySprite.png'
-const emby = new Mob({
-    image: embyImage,
-    position: battlePosition.player,
-    frames: {
-        max: 4,
-        hold: 10
-    },
-    animate: true,
-    name: 'Emby'
-})
 
 //---------------------------------------------------------------------------
 

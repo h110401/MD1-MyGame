@@ -7,10 +7,15 @@
             font-family: 'Press Start 2P', cursive;
         }
 
+        body {
+            background: black;
+        }
+
         button {
             border: 0;
             cursor: pointer;
             font-size: 16px;
+            border: 1px solid dimgray;
         }
 
         button:hover {
@@ -33,14 +38,18 @@
             left: 0;
             right: 0;
             bottom: 0;
-            opacity: 0
+            opacity: 0;
+            /*z-index: 10;*/
             "
     >
     </div>
 
-    <!---------------------------------------------------TOP------------------------------------------------------------->
+    <canvas style="border: 3px solid #707070"></canvas>
 
-    <div style="
+    <div id="userInterface">
+        <!---------------------------------------------------TOP------------------------------------------------------------->
+
+        <div style="
             display: flex;
             top:0;
             left:0;
@@ -49,9 +58,9 @@
             height: 433px;
             border: 3px solid dimgray;
             "
-    >
-        <!--------------------------------------------Infor Box--------------------------------------------------------->
-        <div style="
+        >
+            <!--------------------------------------------Infor Box--------------------------------------------------------->
+            <div style="
                 position: absolute;
                 background-color: white;
                 border: 3px solid dimgray;
@@ -60,26 +69,26 @@
                 top: 50px;
                 left: 50px
                 "
-        >
-            <h1>Draggle</h1>
+            >
+                <h1>Draggle</h1>
 
-            <!------------------------------------Health-Bar----------------------------------->
-            <div style="position: relative">
-                <div style="background-color: #ccc; height: 5px; margin: 10px 0"></div>
-                <div id="enemyHealthBar"
-                     style="
+                <!------------------------------------Health-Bar----------------------------------->
+                <div style="position: relative">
+                    <div style="background-color: #ccc; height: 5px; margin: 10px 0"></div>
+                    <div id="enemyHealthBar"
+                         style="
                         position: absolute;
                         background-color: red;
                         height: 5px;
                         margi-top: 10px;
                         top:0;left:0;right:0"></div>
+                </div>
+                <!------------------------------------Health-Bar----------------------------------->
+
             </div>
-            <!------------------------------------Health-Bar----------------------------------->
-
-        </div>
 
 
-        <div style="
+            <div style="
                 position: absolute;
                 background-color: white;
                 border: 3px solid dimgray;
@@ -89,35 +98,34 @@
                 right: 50px;
                 text-align: right
                 "
-        >
+            >
 
-            <h1>Emby</h1>
+                <h1>Emby</h1>
 
-            <!------------------------------------Health-Bar----------------------------------->
-            <div style="position: relative">
-                <div style="background-color: #ccc; height: 5px; margin: 10px 0"></div>
-                <div id="playerHealthBar"
-                     style="
+                <!------------------------------------Health-Bar----------------------------------->
+                <div style="position: relative">
+                    <div style="background-color: #ccc; height: 5px; margin: 10px 0"></div>
+                    <div id="playerHealthBar"
+                         style="
                         position: absolute;
                         background-color: green;
                         height: 5px;
                         margi-top: 10px;
                         top:0;left:0;right:0"></div>
+                </div>
+                <!-------------------------------------Health-Bar----------------------------------->
+
             </div>
-            <!-------------------------------------Health-Bar----------------------------------->
+            <!----------------------------------------------Infor Box------------------------------------------------------->
 
         </div>
-        <!----------------------------------------------Infor Box------------------------------------------------------->
 
-    </div>
+        <!---------------------------------------------------TOP------------------------------------------------------------->
 
-    <!---------------------------------------------------TOP------------------------------------------------------------->
 
-    <canvas style="border: 3px solid #707070"></canvas>
+        <!--------------------------------------------------BOTTOM----------------------------------------------------------->
 
-    <!--------------------------------------------------BOTTOM----------------------------------------------------------->
-
-    <div style="
+        <div style="
             display: flex;
             position: absolute;
             bottom: 0;
@@ -127,11 +135,11 @@
             height: 140px;
             border: 3px solid dimgray
             "
-    >
-        <!-----------------------------------------------ATTACK------------------------------------------------------>
+        >
+            <!-----------------------------------------------ATTACK------------------------------------------------------>
 
-        <div id="dialogueBox"
-             style="
+            <div id="dialogueBox"
+                 style="
              position: absolute;
              top: 0;
              bottom: 0;
@@ -142,34 +150,40 @@
              cursor: pointer;
              display: none;
              "
-        >
+            >
 
-        </div>
+            </div>
 
-        <div style="
+            <div id="attackBox"
+                 style="
                 width: 66.66%;
                 display: grid;
-                grid-template-columns: repeat(2, 1fr)
+                grid-template-columns: repeat(2, 1fr);
+                background: dimgray;
                 "
-        >
-            <button>Tackle</button>
-            <button>Fireball</button>
-        </div>
+            >
+                <!--            <button>Tackle</button>-->
+                <!--            <button>Fireball</button>-->
+            </div>
 
-        <div style="
+            <div id="attackTypeBox"
+                 style="
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 width: 33.33%;
                 border-left: 3px solid dimgray
                 "
-        >
-            <h1>Attack Type</h1>
+            >
+                <h1>Attack Type</h1>
+            </div>
+
+            <!-----------------------------------------------ATTACK------------------------------------------------------>
+
         </div>
 
-        <!-----------------------------------------------ATTACK------------------------------------------------------>
-
     </div>
+    <!---------------------------------------------------TOP------------------------------------------------------------->
 
 </div>
 
@@ -186,10 +200,10 @@
 <script src="data/mapData.js"></script>
 <script src="data/attacks.js"></script>
 
-<script src="data/attackSprites.js"></script>
+<script src="data/mobs.js"></script>
 
 <!---------------------------------------------CLasses---------------------------------------------------->
-<script src="class/sprites.js"></script>
+<script src="class/sprite.js"></script>
 <script src="class/player.js"></script>
 <script src="class/mob.js"></script>
 <script src="class/boundary.js"></script>
@@ -200,9 +214,8 @@
 
 <!----------------------------------------------Element----------------------------------------------->
 
-<script src="data/attackSprites.js"></script>
 
 <!------------------------------------------>
 
-<script src="Scenes/mapScene.js"></script>
 <script src="Scenes/battleScene.js"></script>
+<script src="Scenes/mapScene.js"></script>

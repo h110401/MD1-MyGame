@@ -6,7 +6,7 @@ class Sprite {
                     animate = false,
                     rotation = 0,
                 }) {
-        this.image = image
+        this.image = new Image()
         this.position = position
         this.frames = {...frames, index: 0, timePerFrame: 0}
         this.animate = animate
@@ -16,6 +16,7 @@ class Sprite {
             this.width = this.image.width * 4 * this.position.scale / this.frames.max
             this.height = this.image.height * 4 * this.position.scale
         }
+        this.image.src = image.src
     }
 
     draw() {
