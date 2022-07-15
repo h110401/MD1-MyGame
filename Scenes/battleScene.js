@@ -1,5 +1,6 @@
 //Battle Scene -------------------------------------------------
 
+let animationId
 
 let animationBattleId
 let renderedSprites
@@ -54,6 +55,7 @@ function initBattle() {
                         opacity: 1,
                         onComplete() {
                             window.cancelAnimationFrame(animationBattleId)
+                            battle = false
                             animate()
                             document.querySelector('#userInterface').style.display = 'none'
                             gsap.to('#overlap', {
@@ -63,6 +65,7 @@ function initBattle() {
                         }
                     })
                 })
+
                 return
             }
 
@@ -85,6 +88,7 @@ function initBattle() {
                         opacity: 1,
                         onComplete() {
                             window.cancelAnimationFrame(animationBattleId)
+                            battle = false
                             animate()
                             document.querySelector('#userInterface').style.display = 'none'
                             gsap.to('#overlap', {

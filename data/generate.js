@@ -12,7 +12,7 @@ const offset = {x: -740, y: -650}
 
 
 //System-Element-------------------------------------------------------------
-
+let battle = false
 
 const keys = {
     w: false,
@@ -27,11 +27,10 @@ let battleZones = arrayMapToPosition(battleZoneMap, Boundary)
 
 
 //Images---------------------------------------------------------------------
-
+const backgroundImage = new Image()
+backgroundImage.src = 'image/background/background.png'
 const background = new Sprite({
-    image: {
-        scr: 'image/background/background.png'
-    },
+    image: backgroundImage,
     position: {
         x: offset.x,
         y: offset.y,
@@ -56,11 +55,17 @@ const battleBackgroundImage = new Image()
 battleBackgroundImage.src = 'image/background/battleBackground.png'
 
 
+const playerUpImage = new Image()
+playerUpImage.src = 'image/player/playerUp.png'
+const playerDownImage = new Image()
+playerDownImage.src = 'image/player/playerDown.png'
+const playerLeftImage = new Image()
+playerLeftImage.src = 'image/player/playerLeft.png'
+const playerRightImage = new Image()
+playerRightImage.src = 'image/player/playerRight.png'
 
 const player = new Player({
-    image: {
-        src: 'image/player/playerUp.png'
-    },
+    image: playerUpImage,
     position: {
         x: canvas.width / 2 - 192 / 4 / 2,
         y: canvas.height / 2 - 68 / 2,
@@ -70,18 +75,10 @@ const player = new Player({
         hold: 10
     },
     sprites: {
-        up: {
-            src: 'image/player/playerUp.png'
-        },
-        down: {
-            src: 'image/player/playerDown.png'
-        },
-        left: {
-            src: 'image/player/playerLeft.png'
-        },
-        right: {
-            src: 'image/player/playerRight.png'
-        },
+        up: playerUpImage,
+        down: playerDownImage,
+        left: playerLeftImage,
+        right: playerRightImage,
     }
 })
 

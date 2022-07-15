@@ -1,15 +1,11 @@
 eventListener()
 
-initBattle()
-animateBattle()
-
-// animate()
-
-let animationId
+animate()
 
 //--------------------------------------------------------------
 
 function animate() {
+
     animationId = requestAnimationFrame(animate)
 
     background.draw()
@@ -22,10 +18,14 @@ function animate() {
 
     foreground.draw()
 
-
-    player.update()
+    if(battle) {
+        player.animate = false
+        return
+    }
 
     activeBattle()
+
+    player.update()
 
 }
 
@@ -53,8 +53,8 @@ function activeBattle() {
             && player.position.y + player.height > zone.position.y
             && player.position.y + player.height < zone.position.y + zone.height + 3
         ) {
-            console.log('asdasddas')
             if (player.animate && Math.random() < 0.5) {
+                battle = true
                 gsap.to('#overlap', {
                     opacity: 1,
                     duration: 0.3,
@@ -65,13 +65,14 @@ function activeBattle() {
                             opacity: 1,
                             onComplete() {
                                 window.cancelAnimationFrame(animationId)
-
+                                document.querySelector('#userInterface').style.display = 'block'
+                                initBattle()
+                                animateBattle()
                                 gsap.to('#overlap', {
                                     opacity: 0,
                                     delay: 0.4
                                 })
-                                initBattle()
-                                animateBattle()
+
                             }
                         })
                     }
