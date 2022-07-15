@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"
+        integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+
+    let a = new Howl({
+        src: 'audio/battle.mp3',
+        html5: true
+    })
+
+    window.addEventListener('click', e => {
+        console.log(e)
+        a.play()
+    })
+
+</script>
+
+</body>
+</html>

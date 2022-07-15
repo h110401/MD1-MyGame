@@ -18,7 +18,7 @@ function animate() {
 
     foreground.draw()
 
-    if(battle) {
+    if (battle) {
         player.animate = false
         return
     }
@@ -55,6 +55,9 @@ function activeBattle() {
         ) {
             if (player.animate && Math.random() < 0.5) {
                 battle = true
+                audio.map.stop()
+                audio.initBattle.play()
+                audio.battle.play()
                 gsap.to('#overlap', {
                     opacity: 1,
                     duration: 0.3,
@@ -84,7 +87,14 @@ function activeBattle() {
 
 
 function eventListener() {
+
+    let played = false
+
     window.addEventListener('keydown', e => {
+        if (!played) {
+            played = true
+            audio.map.play()
+        }
         switch (e.key) {
             case 'Tab':
                 e.preventDefault()
@@ -121,6 +131,12 @@ function eventListener() {
         }
     })
 
+    window.addEventListener('click', () => {
+        if (!played) {
+            played = true
+            audio.map.play()
+        }
+    })
 }
 
 //Test------------------------------------------------------------
