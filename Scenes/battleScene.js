@@ -56,6 +56,8 @@ function initBattle() {
                         onComplete() {
                             window.cancelAnimationFrame(animationBattleId)
                             battle = false
+                            audio.battle.stop()
+                            audio.map.play()
                             animate()
                             document.querySelector('#userInterface').style.display = 'none'
                             gsap.to('#overlap', {
