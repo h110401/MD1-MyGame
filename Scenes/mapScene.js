@@ -1,5 +1,5 @@
 eventListener()
-animateBattle()
+
 // animate()
 
 //--------------------------------------------------------------
@@ -23,37 +23,11 @@ function animate() {
     activeBattle()
 
     if (battle) {
-        console.log('active battle')
         window.cancelAnimationFrame(animationId)
     }
 }
 
-//Battle Scene -------------------------------------------------
 
-function animateBattle() {
-    let animationBattleId = requestAnimationFrame(animateBattle)
-
-    displayBattleScene()
-
-    document.querySelectorAll('button').forEach(button => {
-        button.addEventListener('click', e => {
-            client.click = true
-        })
-    })
-
-    if(client.click) {
-        emby.attack({
-            attack:{},
-            target: draggle
-        })
-    }
-
-    if (!battle) {
-        window.cancelAnimationFrame(animationBattleId)
-        animate()
-    }
-    client.click = false
-}
 
 //Functions-----------------------------------------------------
 
@@ -103,6 +77,8 @@ function activeBattle() {
     })
 }
 
+
+
 function eventListener() {
     window.addEventListener('keydown', e => {
         switch (e.key) {
@@ -146,21 +122,7 @@ function eventListener() {
         client.x = e.clientX - 10
         client.y = e.clientY - 10
     })
-    // window.addEventListener('click', e => {
-    //     if (e.srcElement.type === 'submit') {
-    //         e.srcElement.blur()
-    //     }
-    //     client.click = true
-    // })
 }
 
 //Test------------------------------------------------------------
 
-function displayBattleScene() {
-
-    c.drawImage(battleBackgroundImage, 0, 0)
-
-    draggle.draw()
-    emby.draw()
-
-}

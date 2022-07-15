@@ -47,7 +47,7 @@
             right:0;
             position: absolute;
             height: 433px;
-            border: 3px solid black
+            border: 3px solid dimgray;
             "
     >
         <!--------------------------------------------Infor Box--------------------------------------------------------->
@@ -65,8 +65,9 @@
 
             <!------------------------------------Health-Bar----------------------------------->
             <div style="position: relative">
-                <div style="background-color: #ccc; height: 5px; margin: 10px"></div>
-                <div style="
+                <div style="background-color: #ccc; height: 5px; margin: 10px 0"></div>
+                <div id="enemyHealthBar"
+                     style="
                         position: absolute;
                         background-color: red;
                         height: 5px;
@@ -94,8 +95,9 @@
 
             <!------------------------------------Health-Bar----------------------------------->
             <div style="position: relative">
-                <div style="background-color: #ccc; height: 5px; margin: 10px"></div>
-                <div style="
+                <div style="background-color: #ccc; height: 5px; margin: 10px 0"></div>
+                <div id="playerHealthBar"
+                     style="
                         position: absolute;
                         background-color: green;
                         height: 5px;
@@ -128,6 +130,22 @@
     >
         <!-----------------------------------------------ATTACK------------------------------------------------------>
 
+        <div id="dialogueBox"
+             style="
+             position: absolute;
+             top: 0;
+             bottom: 0;
+             left: 0;
+             right: 0;
+             background-color: white;
+             padding: 12px;
+             cursor: pointer;
+             display: none;
+             "
+        >
+
+        </div>
+
         <div style="
                 width: 66.66%;
                 display: grid;
@@ -135,7 +153,7 @@
                 "
         >
             <button>Tackle</button>
-            <button>Skill</button>
+            <button>Fireball</button>
         </div>
 
         <div style="
@@ -157,12 +175,34 @@
 
 <!--------------------------------------------------BOTTOM----------------------------------------------------------->
 
+
+<!---------------------------------------------GSAP---------------------------------------------------->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"
         integrity="sha512-VEBjfxWUOyzl0bAwh4gdLEaQyDYPvLrZql3pw1ifgb6fhEvZl9iDDehwHZ+dsMzA0Jfww8Xt7COSZuJ/slxc4Q=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!---------------------------------------------GSAP---------------------------------------------------->
+
 
 <script src="data/mapData.js"></script>
+<script src="data/attacks.js"></script>
 
-<script src="classes.js"></script>
-<script src="generate.js"></script>
-<script src="system.js"></script>
+<script src="data/attackSprites.js"></script>
+
+<!---------------------------------------------CLasses---------------------------------------------------->
+<script src="class/sprites.js"></script>
+<script src="class/player.js"></script>
+<script src="class/mob.js"></script>
+<script src="class/boundary.js"></script>
+
+<!---------------------------------------------CLasses---------------------------------------------------->
+
+<script src="data/generate.js"></script>
+
+<!----------------------------------------------Element----------------------------------------------->
+
+<script src="data/attackSprites.js"></script>
+
+<!------------------------------------------>
+
+<script src="Scenes/mapScene.js"></script>
+<script src="Scenes/battleScene.js"></script>

@@ -112,7 +112,9 @@ const draggle = new Mob({
         max: 4,
         hold: 20
     },
-    animate: true
+    animate: true,
+    isEnemy: true,
+    name: 'Draggle'
 })
 
 const embyImage = new Image()
@@ -124,12 +126,14 @@ const emby = new Mob({
         max: 4,
         hold: 10
     },
-    animate: true
+    animate: true,
+    name: 'Emby'
 })
 
 //---------------------------------------------------------------------------
 
 const moveables = [background, foreground, ...battleZones, ...boundaries]
+
 
 //---------------------------------------------------------------------------
 
