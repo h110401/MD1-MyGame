@@ -27,8 +27,8 @@ function initBattle(playerName, enemyName) {
     document.querySelector('#playerMonsterName').innerHTML = playerMonster.name
     document.querySelector('#enemyMonsterName').innerHTML = enemyMonster.name
 
-    document.querySelector('#userInterface').display = 'block'
-    document.querySelector('#dialogueBox').display = 'none'
+    document.querySelector('#userInterface').style.display = 'block'
+    document.querySelector('#dialogueBox').style.display = 'none'
     document.querySelector('#enemyHealthBar').style.width = '100%'
     document.querySelector('#playerHealthBar').style.width = '100%'
     document.querySelector('#attackBox').replaceChildren()

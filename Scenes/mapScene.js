@@ -56,6 +56,7 @@ function checkBattle() {
             && player.position.y + player.height < zone.position.y + zone.height + 3
         ) {
             if (player.animate && Math.random() < 0.5) {
+
                 battle = true
                 audio.map.stop()
                 audio.initBattle.play()
@@ -70,8 +71,7 @@ function checkBattle() {
                             opacity: 1,
                             onComplete() {
                                 window.cancelAnimationFrame(animationId)
-                                document.querySelector('#userInterface').style.display = 'block'
-                                document.querySelector('#dialogueBox').style.display = 'none'
+
                                 initBattle('Emby','Draggle')
                                 animateBattle()
                                 gsap.to('#overlap', {

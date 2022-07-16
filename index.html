@@ -32,6 +32,16 @@
             font-size: 16px;
         }
 
+        .grid-container-rows {
+            display: grid;
+            grid-template-rows: auto 140px;
+        }
+
+        .grid-container-columns {
+            display: grid;
+            grid-template-columns: auto 33%;
+        }
+
     </style>
 </head>
 
@@ -50,8 +60,7 @@
             opacity: 0;
             z-index: 1;
             pointer-events: none;
-            "
-    >
+            ">
     </div>
 
 
@@ -59,50 +68,49 @@
 
 
     <div id="userInterface" style="display: none">
-        <!---------------------------------------------------TOP------------------------------------------------------------->
-
-        <div style="
-            display: flex;
-            top:0;
-            left:0;
-            right:0;
-            position: absolute;
-            height: 436px;
-            border: 3px solid dimgray;
-            "
-        >
-            <!--------------------------------------------Infor Box--------------------------------------------------------->
-            <div style="
+        <div
+             style="
+             display: grid;
+             grid-template-rows: auto 140px;
+             position: absolute;
+             top: 0;
+             left: 0;
+             right: 0;
+             bottom: 0;
+             ">
+            <div style="position: relative">
+                <!--------------------------------------------Infor Box--------------------------------------------------------->
+                <div style="
                 position: absolute;
-                background-color: white;
+                background: white;
                 border: 3px solid dimgray;
                 padding: 5px 12px;
                 width: 250px;
                 top: 50px;
                 left: 50px
                 "
-            >
-                <h1 id="playerMonsterName"></h1>
+                >
+                    <h1 id="playerMonsterName">Emby</h1>
 
-                <!------------------------------------Health-Bar----------------------------------->
-                <div style="position: relative">
-                    <div style="background-color: #ccc; height: 5px; margin: 10px 0"></div>
-                    <div id="enemyHealthBar"
-                         style="
+                    <!------------------------------------Health-Bar----------------------------------->
+                    <div style="position: relative">
+                        <div style="background-color: #ccc; height: 5px; margin: 10px 0"></div>
+                        <div id="playerHealthBar"
+                             style="
                         position: absolute;
                         background-color: green;
                         height: 5px;
                         margi-top: 10px;
                         top:0;left:0;right:0"></div>
+                    </div>
+                    <!------------------------------------Health-Bar----------------------------------->
+
                 </div>
-                <!------------------------------------Health-Bar----------------------------------->
+                <!------------------------------------------------------------------------------------------------------------------------------->
 
-            </div>
-            <!------------------------------------------------------------------------------------------------------------------------------->
-
-            <div style="
+                <div style="
                 position: absolute;
-                background-color: white;
+                background: white;
                 border: 3px solid dimgray;
                 padding: 5px 12px;
                 width: 250px;
@@ -110,92 +118,90 @@
                 right: 50px;
                 text-align: right
                 "
-            >
+                >
 
-                <h1 id="enemyMonsterName"></h1>
+                    <h1 id="enemyMonsterName">Draggle</h1>
 
-                <!------------------------------------Health-Bar----------------------------------->
-                <div style="position: relative">
-                    <div style="background-color: #ccc; height: 5px; margin: 10px 0"></div>
-                    <div id="playerHealthBar"
-                         style="
+                    <!------------------------------------Health-Bar----------------------------------->
+                    <div style="position: relative">
+                        <div style="background-color: #ccc; height: 5px; margin: 10px 0"></div>
+                        <div id="enemyHealthBar"
+                             style="
                         position: absolute;
                         background-color: red;
                         height: 5px;
                         margi-top: 10px;
                         top:0;left:0;right:0"></div>
+                    </div>
+                    <!-------------------------------------Health-Bar----------------------------------->
+
                 </div>
-                <!-------------------------------------Health-Bar----------------------------------->
+                <!----------------------------------------------Infor Box------------------------------------------------------->
 
             </div>
-            <!----------------------------------------------Infor Box------------------------------------------------------->
 
-        </div>
-
-        <!---------------------------------------------------TOP------------------------------------------------------------->
+            <!---------------------------------------------------TOP------------------------------------------------------------->
 
 
-        <!--------------------------------------------------BOTTOM----------------------------------------------------------->
+            <!--------------------------------------------------BOTTOM----------------------------------------------------------->
 
-        <div style="
-            display: flex;
-            position: absolute;
-            bottom: 0;
+            <div class="grid-container-columns"
+                 style="
             background-color: white;
-            left: 0;
-            right: 0;
-            height: 140px;
             border: 3px solid dimgray
             "
-        >
-            <!-----------------------------------------------ATTACK------------------------------------------------------>
-
-            <div id="dialogueBox"
-                 style="
-             position: absolute;
-             top: 0;
-             bottom: 0;
-             left: 0;
-             right: 0;
-             background-color: white;
-             padding: 12px;
-             cursor: pointer;
-             display: none;
-             "
             >
+                <!-----------------------------------------------ATTACK------------------------------------------------------>
 
-            </div>
 
-            <div id="attackBox"
-                 style="
-                width: 66.66%;
+                <div id="attackBox"
+                     style="
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
                 background: dimgray;
                 "
-            >
-                <!--            <button>Tackle</button>-->
-                <!--            <button>Fireball</button>-->
-            </div>
+                >
+                    <button>Tackle</button>
+                    <button>Fireball</button>
+                </div>
 
-            <div id="attackTypeBox"
-                 style="
+                <div id="attackTypeBox"
+                     style="
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                width: 33.33%;
                 border-left: 3px solid dimgray
                 "
-            >
-                <h1>Attack Type</h1>
+                >
+                    <h1>Attack Type</h1>
+                </div>
+
+                <!-----------------------------------------------ATTACK------------------------------------------------------>
+
             </div>
 
-            <!-----------------------------------------------ATTACK------------------------------------------------------>
 
         </div>
-
+        <div id="dialogueBox"
+             style="
+             position: absolute;
+             bottom: 0;
+             left: 0;
+             right: 0;
+             height: 130px;
+             background-color: white;
+             border: 3px solid dimgray;
+             padding: 12px;
+             cursor: pointer;
+             display: none;
+             ">
+        </div>
     </div>
     <!---------------------------------------------------TOP------------------------------------------------------------->
+
+
+    <!---------------------------------------------------TOP------------------------------------------------------------->
+
 
 </div>
 
