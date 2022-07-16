@@ -41,7 +41,7 @@ class Monster extends Sprite {
 
         switch (attack.name) {
             case 'Tackle':
-                timer += 40
+                timer += 42
                 tl.to(this.position, {
                     x: this.position.x - distance,
                     duration: 0.4
@@ -71,7 +71,7 @@ class Monster extends Sprite {
                 })
                 break
             case 'FireBall':
-                timer += 60
+                timer += 72
                 tl.to(this.position, {
                     x: this.position.x - distance,
                     duration: 0.4

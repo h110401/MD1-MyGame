@@ -1,9 +1,5 @@
 eventListener()
 
-animate()
-
-
-
 //--------------------------------------------------------------
 
 function animate() {
@@ -31,6 +27,7 @@ function animate() {
 
 }
 
+animate()
 
 //Functions-----------------------------------------------------
 
@@ -72,7 +69,7 @@ function checkBattle() {
                             onComplete() {
                                 window.cancelAnimationFrame(animationId)
 
-                                initBattle('Emby','Draggle')
+                                initBattle('Emby', 'Draggle')
                                 animateBattle()
                                 gsap.to('#overlap', {
                                     opacity: 0,

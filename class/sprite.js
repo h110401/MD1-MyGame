@@ -9,7 +9,7 @@ class Sprite {
                 }) {
         this.image = new Image()
         this.position = position
-        this.frames = {...frames, index: 0, timePerFrame: 0}
+        this.frames = {...frames, index: 0, timePerSprite: 0}
         this.animate = animate
         this.opacity = 1
         this.rotation = rotation
@@ -47,37 +47,16 @@ class Sprite {
             return
         }
 
-        if (this.frames.timePerFrame % this.frames.hold === 0) {
+        if (this.frames.timePerSprite % this.frames.hold === 0) {
             if (this.frames.index < this.frames.max - 1) {
                 this.frames.index++
             } else {
                 this.frames.index = 0
             }
-            this.frames.timePerFrame = 0
+            this.frames.timePerSprite = 0
         }
-        this.frames.timePerFrame++
+        this.frames.timePerSprite++
     }
 
-    flipImage(image, ctx, flipH) {
-        let scaleH = flipH ? -1 : 1,
-            posX = flipH ? width * -1 : 0;
-
-
-        c.save();
-        c.scale(scaleH, 1);
-        c.drawImage(image, posX, 0, this.width, this.height);
-        c.restore();
-    };
 }
 
-
-function flipImage(image, ctx, flipH, flipV) {
-    let scaleH = flipH ? -1 : 1,
-        posX = flipH ? width * -1 : 0;
-
-
-    c.save();
-    c.scale(scaleH, 1);
-    c.drawImage(image, posX, posY, width, height);
-    c.restore();
-};
