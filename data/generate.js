@@ -78,7 +78,7 @@ const playerRightImage = new Image()
 playerRightImage.src = 'image/player/playerRight.png'
 
 const player = new Player({
-    image: playerUpImage,
+    image: playerDownImage,
     position: {
         x: canvas.width / 2 - 192 / 4 / 2,
         y: canvas.height / 2 - 68 / 2,

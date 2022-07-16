@@ -18,22 +18,22 @@ const audio = {
     victory: new Howl({
         src: './audio/victory.wav',
         html5: true,
-        volumn: 0.5
+        volumn: 0.2
     }),
     //Attacks-------------------------------
     tackleHit: new Howl({
         src: './audio/tackleHit.wav',
         html5: true,
-        volumn: 0.5
+        volumn: 0.2
     }),
     initFireball: new Howl({
         src: './audio/initFireball.wav',
         html5: true,
-        volumn: 0.5
+        volumn: 0.2
     }),
     fireballHit: new Howl({
         src: './audio/fireballHit.wav',
         html5: true,
-        volumn: 0.5
+        volumn: 0.2
     }),
 }

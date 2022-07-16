@@ -1,20 +1,25 @@
 //Battle Scene -------------------------------------------------
 
+let isClicked = false
+let delay = 30
+let timer = 0
+
 let animationId
 
 let animationBattleId
-let renderedSprites
+let renderedSprites = []
 let queue
+
 let playerMonster
 let enemyMonster
 
 
-function initBattle(playerMob, enemyMob) {
+function initBattle(playerName, enemyName) {
 //-----------------------------------Reset to new Battle--------------------------------//
 
-    playerMonster = new Monster(monster[playerMob])
+    playerMonster = new Monster(monster[playerName])
     playerMonster.position = {...battlePosition.player}
-    enemyMonster = new Monster(monster[enemyMob])
+    enemyMonster = new Monster(monster[enemyName])
     enemyMonster.position = {...battlePosition.enemy}
     enemyMonster.isEnemy = true
     enemyMonster.flip = true
@@ -27,7 +32,6 @@ function initBattle(playerMob, enemyMob) {
     document.querySelector('#enemyHealthBar').style.width = '100%'
     document.querySelector('#playerHealthBar').style.width = '100%'
     document.querySelector('#attackBox').replaceChildren()
-
 
     renderedSprites = [enemyMonster, playerMonster]
 
@@ -48,6 +52,9 @@ function initBattle(playerMob, enemyMob) {
     //-------------------------------Button Click Event-----------------------------//
     document.querySelectorAll('button').forEach(button => {
         button.addEventListener('click', e => {
+            if (timer > 0) return
+            isClicked = true
+            timer = delay
             const selectedAttack = attacks[e.currentTarget.innerHTML]
             e.currentTarget.blur()
             //Player Attack----------------------------------------------
@@ -59,6 +66,8 @@ function initBattle(playerMob, enemyMob) {
             if (enemyMonster.health <= 0) {
                 queue.push(() => {
                     enemyMonster.faint()
+                    audio.battle.stop()
+                    audio.victory.play()
                 })
                 queue.push(() => {
                     gsap.to('#overlap', {
@@ -66,7 +75,7 @@ function initBattle(playerMob, enemyMob) {
                         onComplete() {
                             window.cancelAnimationFrame(animationBattleId)
                             battle = false
-                            audio.battle.stop()
+                            audio.victory.stop()
                             audio.map.play()
                             animate()
                             document.querySelector('#userInterface').style.display = 'none'
@@ -138,7 +147,17 @@ function initBattle(playerMob, enemyMob) {
 
 
 function animateBattle() {
-    console.log(enemyMonster.position.y, battlePosition.enemy.y)
+
+    if (isClicked) {
+        if (timer > 0) {
+            timer--
+        } else {
+            isClicked = false
+        }
+    }
+
+    console.log(timer)
+
     animationBattleId = requestAnimationFrame(animateBattle)
 
     c.drawImage(battleBackgroundImage, 0, 0)
@@ -151,12 +170,16 @@ function animateBattle() {
 // Perform Attack ----------------------------------------------------------------------------
 
 document.querySelector('#dialogueBox').addEventListener('click', e => {
+    if (isClicked) return
+
     if (queue.length > 0) {
         queue[0]()
         queue.shift()
     } else {
         e.currentTarget.style.display = 'none'
     }
+    isClicked = true
+    timer = delay
 })
 
 

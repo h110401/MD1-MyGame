@@ -1,5 +1,6 @@
 class Monster extends Sprite {
     constructor({image, position, frames, animate, isEnemy = false, name, attacks}) {
+
         super({image, position, frames, animate});
 
         this.isEnemy = isEnemy
@@ -10,7 +11,7 @@ class Monster extends Sprite {
     }
 
     attack({attack, target}) {
-        console.log(this.name +'atatck' + target.name)
+        console.log(this.name + 'atatck' + target.name)
         document.querySelector('#dialogueBox').style.display = 'block'
         document.querySelector('#dialogueBox').innerHTML = this.name + ' used ' + attack.name
 
@@ -33,13 +34,14 @@ class Monster extends Sprite {
 
         target.health -= attack.damage
 
-        let distance = this.isEnemy ? -20 : 20
-        let healthBar = this.isEnemy ? '#playerHealthBar' : '#enemyHealthBar'
+        let distance = this.isEnemy ? -10 : 10
+        let healthBar = this.isEnemy ? '#enemyHealthBar' : '#playerHealthBar'
 
         const tl = gsap.timeline()
 
         switch (attack.name) {
             case 'Tackle':
+                timer += 40
                 tl.to(this.position, {
                     x: this.position.x - distance,
                     duration: 0.4
@@ -47,6 +49,7 @@ class Monster extends Sprite {
                     x: this.position.x + distance * 2,
                     duration: 0.1,
                     onComplete() {
+                        audio.tackleHit.play()
                         gsap.to(target.position, {
                             x: target.position.x + distance,
                             duration: 0.2,
@@ -68,6 +71,7 @@ class Monster extends Sprite {
                 })
                 break
             case 'FireBall':
+                timer += 60
                 tl.to(this.position, {
                     x: this.position.x - distance,
                     duration: 0.4
@@ -75,14 +79,16 @@ class Monster extends Sprite {
                     x: this.position.x + distance * 2,
                     duration: 0.1,
                     onComplete() {
+                        audio.initFireball.play()
                         renderedSprites.splice(1, 0, fireBall)
                         gsap.to(fireBall.position, {
                             x: target.position.x,
                             y: target.position.y,
                             duration: 0.5,
                             onComplete() {
+                                audio.initFireball.stop()
+                                audio.fireballHit.play()
                                 renderedSprites.splice(1, 1)
-
                                 gsap.to(target.position, {
                                     x: target.position.x + distance,
                                     duration: 0.2,
@@ -93,7 +99,7 @@ class Monster extends Sprite {
                                     duration: 0.1,
                                     opacity: 0,
                                     yoyo: true,
-                                    repeat: 5
+                                    repeat: 3
                                 })
                                 gsap.to(healthBar, {
                                     width: target.health + '%'
@@ -113,7 +119,8 @@ class Monster extends Sprite {
         this.animate = false
         document.querySelector('#dialogueBox').innerHTML = this.name + ' fainted!'
         gsap.to(this, {
-            opacity: 0
+            opacity: 0,
+            duration: 0.1,
         })
         gsap.to(this.position, {
             y: this.position.y + 40
