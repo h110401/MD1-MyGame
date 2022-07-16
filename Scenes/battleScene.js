@@ -7,7 +7,7 @@ let timer = 0
 let animationId
 
 let animationBattleId
-let renderedSprites = []
+let renderedSprites
 let queue
 
 let playerMonster
@@ -156,7 +156,6 @@ function animateBattle() {
         }
     }
 
-    console.log(timer)
 
     animationBattleId = requestAnimationFrame(animateBattle)
 
@@ -170,7 +169,10 @@ function animateBattle() {
 // Perform Attack ----------------------------------------------------------------------------
 
 document.querySelector('#dialogueBox').addEventListener('click', e => {
-    if (isClicked) return
+
+    if (isClicked) {
+        return
+    }
 
     if (queue.length > 0) {
         queue[0]()

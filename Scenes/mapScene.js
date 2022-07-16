@@ -71,6 +71,7 @@ function checkBattle() {
                             onComplete() {
                                 window.cancelAnimationFrame(animationId)
                                 document.querySelector('#userInterface').style.display = 'block'
+                                document.querySelector('#dialogueBox').style.display = 'none'
                                 initBattle('Emby','Draggle')
                                 animateBattle()
                                 gsap.to('#overlap', {
