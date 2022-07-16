@@ -156,7 +156,6 @@ function animateBattle() {
         }
     }
 
-
     animationBattleId = requestAnimationFrame(animateBattle)
 
     c.drawImage(battleBackgroundImage, 0, 0)

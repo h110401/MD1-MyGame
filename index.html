@@ -1,4 +1,9 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <title>Pokemon Based Game</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -26,8 +31,11 @@
         h1 {
             font-size: 16px;
         }
+
     </style>
 </head>
+
+<body>
 
 <div style="display: inline-block; position: relative">
 
@@ -46,7 +54,9 @@
     >
     </div>
 
-    <canvas style="border: 3px solid #707070"></canvas>
+
+    <canvas style="border: 3px solid #707070; background: dimgray"></canvas>
+
 
     <div id="userInterface" style="display: none">
         <!---------------------------------------------------TOP------------------------------------------------------------->
@@ -57,7 +67,7 @@
             left:0;
             right:0;
             position: absolute;
-            height: 433px;
+            height: 436px;
             border: 3px solid dimgray;
             "
         >
@@ -88,7 +98,7 @@
                 <!------------------------------------Health-Bar----------------------------------->
 
             </div>
-
+            <!------------------------------------------------------------------------------------------------------------------------------->
 
             <div style="
                 position: absolute;
@@ -224,10 +234,10 @@
 
 <script src="data/generate.js"></script>
 
-<!----------------------------------------------Element----------------------------------------------->
-
-
 <!------------------------------------------>
 
 <script src="Scenes/battleScene.js"></script>
 <script src="Scenes/mapScene.js"></script>
+
+</body>
+</html>

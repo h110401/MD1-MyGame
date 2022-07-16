@@ -1,26 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Pokemon Based Game</title>
+    <style>
+        .grid-container-rows {
+            display: grid;
+            grid-template-rows: auto 140px;
+        }
+        .grid-container-columns {
+            display: grid;
+            grid-template-columns: auto 33%;
+        }
+
+    </style>
 </head>
+
 <body>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"
-        integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<div style="display: inline-block; position: relative">
 
-<script>
+    <div id="overlap"
+         style="
+         position: absolute;
+         top:0;
+         bottom: 0;
+         left: 0;
+         right:0;
+         background-color: dimgray;
+         display: none;
+         "
+    ></div>
 
-    let a = {
+    <canvas width="1024" height="576" style="border: 3px solid black"></canvas>
 
-    }
+    <div class="grid-container-rows" style="position: absolute; top: 0;left: 0;right: 0;bottom: 0">
 
-    a.say = 'HI'
+        <div style="background: black; position: relative">
+            <div style="background: white; position: absolute; width: 250px; height: 100px; top: 50px; left: 50px"></div>
 
-    console.log(a.say)
+            <div style="background: white; position: absolute; width: 250px; height: 100px; bottom: 50px; right: 50px"></div>
 
-</script>
+        </div>
+
+        <div class="grid-container-columns" style="background: red">
+
+            <div style="background: green">
+
+            </div>
+
+            <div style="background: blue">
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div id="dialogue"
+         style="
+         border: 3px solid dimgray;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 140px;
+            background: white;
+            display: none;
+         "
+    >
+
+    </div>
+
+</div>
+
 
 </body>
 </html>
