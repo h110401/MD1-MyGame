@@ -12,8 +12,6 @@ const offset = {x: -740, y: -650}
 
 
 //System-Element-------------------------------------------------------------
-let battle = false
-
 const keys = {
     w: false,
     s: false,
@@ -21,9 +19,24 @@ const keys = {
     d: false,
 }
 
-let boundaries = arrayMapToPosition(collisionMap, Boundary)
+const battlePosition = {
+    enemy: {
+        x: 795,
+        y: 90,
+        scale: 1.5
+    },
+    player: {
+        x: 270,
+        y: 290,
+        scale: 2
+    }
+}
 
-let battleZones = arrayMapToPosition(battleZoneMap, Boundary)
+let battle = false
+
+const boundaries = arrayMapToPosition(collisionMap, Boundary)
+
+const battleZones = arrayMapToPosition(battleZoneMap, Boundary)
 
 
 //Images---------------------------------------------------------------------

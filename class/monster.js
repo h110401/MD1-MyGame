@@ -1,4 +1,4 @@
-class Mob extends Sprite {
+class Monster extends Sprite {
     constructor({image, position, frames, animate, isEnemy = false, name, attacks}) {
         super({image, position, frames, animate});
 
@@ -10,7 +10,7 @@ class Mob extends Sprite {
     }
 
     attack({attack, target}) {
-
+        console.log(this.name +'atatck' + target.name)
         document.querySelector('#dialogueBox').style.display = 'block'
         document.querySelector('#dialogueBox').innerHTML = this.name + ' used ' + attack.name
 
@@ -110,6 +110,7 @@ class Mob extends Sprite {
     }
 
     faint() {
+        this.animate = false
         document.querySelector('#dialogueBox').innerHTML = this.name + ' fainted!'
         gsap.to(this, {
             opacity: 0
@@ -117,6 +118,5 @@ class Mob extends Sprite {
         gsap.to(this.position, {
             y: this.position.y + 40
         })
-        this.animate = false
     }
 }

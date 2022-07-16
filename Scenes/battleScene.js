@@ -5,11 +5,22 @@ let animationId
 let animationBattleId
 let renderedSprites
 let queue
-let emby
-let draggle
+let playerMonster
+let enemyMonster
 
-function initBattle() {
+
+function initBattle(playerMob, enemyMob) {
 //-----------------------------------Reset to new Battle--------------------------------//
+
+    playerMonster = new Monster(monster[playerMob])
+    playerMonster.position = {...battlePosition.player}
+    enemyMonster = new Monster(monster[enemyMob])
+    enemyMonster.position = {...battlePosition.enemy}
+    enemyMonster.isEnemy = true
+    enemyMonster.flip = true
+
+    document.querySelector('#playerMonsterName').innerHTML = playerMonster.name
+    document.querySelector('#enemyMonsterName').innerHTML = enemyMonster.name
 
     document.querySelector('#userInterface').display = 'block'
     document.querySelector('#dialogueBox').display = 'none'
@@ -17,16 +28,16 @@ function initBattle() {
     document.querySelector('#playerHealthBar').style.width = '100%'
     document.querySelector('#attackBox').replaceChildren()
 
-    emby = new Mob(monster.Emby)
-    draggle = new Mob(monster.Draggle)
-    renderedSprites = [draggle, emby]
+
+    renderedSprites = [enemyMonster, playerMonster]
+
     queue = []
 
 //-----------------------------------Reset to new Battle--------------------------------//
 
 
 //-----------------------------------Draw Attack Buttons--------------------------------//
-    emby.attacks.forEach((attack) => {
+    playerMonster.attacks.forEach((attack) => {
         const button = document.createElement('button')
         button.innerHTML = attack.name
         document.querySelector('#attackBox').append(button)
@@ -38,19 +49,18 @@ function initBattle() {
     document.querySelectorAll('button').forEach(button => {
         button.addEventListener('click', e => {
             const selectedAttack = attacks[e.currentTarget.innerHTML]
-            console.log()
             e.currentTarget.blur()
-            emby.attack({
+            //Player Attack----------------------------------------------
+            playerMonster.attack({
                 attack: selectedAttack,
-                target: draggle
+                target: enemyMonster
             })
 
-            if (draggle.health <= 0) {
+            if (enemyMonster.health <= 0) {
                 queue.push(() => {
-                    draggle.faint()
+                    enemyMonster.faint()
                 })
                 queue.push(() => {
-                    draggle.animate = false
                     gsap.to('#overlap', {
                         opacity: 1,
                         onComplete() {
@@ -67,30 +77,32 @@ function initBattle() {
                         }
                     })
                 })
-
                 return
             }
 
-            const randomAttack = draggle.attacks[Math.floor(Math.random() * draggle.attacks.length)]
+            //Enemy Attack-------------------------------------------------
+
+            const randomAttack = enemyMonster.attacks[Math.floor(Math.random() * enemyMonster.attacks.length)]
 
             queue.push(() => {
-                draggle.attack({
+                enemyMonster.attack({
                     attack: randomAttack,
-                    target: emby
+                    target: playerMonster
                 })
             })
 
-            if (emby.health <= 0) {
+            if (playerMonster.health <= 0) {
                 queue.push(() => {
-                    emby.faint()
+                    playerMonster.faint()
                 })
                 queue.push(() => {
-                    draggle.animate = false
                     gsap.to('#overlap', {
                         opacity: 1,
                         onComplete() {
                             window.cancelAnimationFrame(animationBattleId)
                             battle = false
+                            audio.battle.stop()
+                            audio.map.play()
                             animate()
                             document.querySelector('#userInterface').style.display = 'none'
                             gsap.to('#overlap', {
@@ -126,7 +138,7 @@ function initBattle() {
 
 
 function animateBattle() {
-
+    console.log(enemyMonster.position.y, battlePosition.enemy.y)
     animationBattleId = requestAnimationFrame(animateBattle)
 
     c.drawImage(battleBackgroundImage, 0, 0)
@@ -134,11 +146,9 @@ function animateBattle() {
     renderedSprites.forEach(sprite => {
         sprite.draw()
     })
-
 }
 
 // Perform Attack ----------------------------------------------------------------------------
-
 
 document.querySelector('#dialogueBox').addEventListener('click', e => {
     if (queue.length > 0) {
@@ -148,5 +158,6 @@ document.querySelector('#dialogueBox').addEventListener('click', e => {
         e.currentTarget.style.display = 'none'
     }
 })
+
 
 // Perform Attack Scene ----------------------------------------------------------------------------

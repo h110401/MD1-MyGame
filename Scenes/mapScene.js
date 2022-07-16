@@ -23,7 +23,7 @@ function animate() {
         return
     }
 
-    activeBattle()
+    checkBattle()
 
     player.update()
 
@@ -45,7 +45,7 @@ function checkCollision(item) {
         item.position.y + item.width / 4 >= player.position.y
 }
 
-function activeBattle() {
+function checkBattle() {
     battleZones.forEach(zone => {
         if (checkCollision(zone)
             && player.position.x > zone.position.x
@@ -69,7 +69,7 @@ function activeBattle() {
                             onComplete() {
                                 window.cancelAnimationFrame(animationId)
                                 document.querySelector('#userInterface').style.display = 'block'
-                                initBattle()
+                                initBattle('Emby','Draggle')
                                 animateBattle()
                                 gsap.to('#overlap', {
                                     opacity: 0,
@@ -84,7 +84,6 @@ function activeBattle() {
         }
     })
 }
-
 
 function eventListener() {
 
@@ -139,5 +138,4 @@ function eventListener() {
     })
 }
 
-//Test------------------------------------------------------------
 
