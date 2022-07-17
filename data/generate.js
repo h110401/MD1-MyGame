@@ -107,21 +107,4 @@ const startScene = new Sprite({
     animate: true
 })
 
-function animateStart() {
-    animationStartId = requestAnimationFrame(animateStart)
-    startScene.draw()
-    c.imageSmoothingEnabled = false
-    c.drawImage(title, 512 - title.width, 40, title.width * 2, title.height * 2)
-}
 
-animateStart()
-
-
-let Emby = {
-    name: 'Emby',
-    lv: 1,
-    exp: 0,
-    hp: 100
-}
-
-player.monsterList.push(Emby)

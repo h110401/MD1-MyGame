@@ -106,6 +106,7 @@ function initBattle(playerName, enemyName) {
                             audio.map.play()
                             animate()
                             document.querySelector('#userInterface').style.display = 'none'
+                            document.querySelector('#dialogueBox').style.display = 'none'
                             gsap.to('#overlap', {
                                 opacity: 0,
                                 delay: 0.4
@@ -139,8 +140,6 @@ function initBattle(playerName, enemyName) {
 
 
 function animateBattle() {
-    animationBattleId = requestAnimationFrame(animateBattle)
-
 
     countDown()
 
@@ -150,6 +149,9 @@ function animateBattle() {
         sprite.draw()
     })
 
+    setTimeout(() => {
+        animationBattleId = requestAnimationFrame(animateBattle)
+    }, 1000 / FPS)
 }
 
 // Perform Attack ----------------------------------------------------------------------------

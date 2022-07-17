@@ -67,20 +67,5 @@ function countDown() {
 //---------------------------------------StartScene---------------------------------
 
 
-function startGame() {
-    gsap.to('#overlap', {
-        opacity: 1,
-        onComplete() {
-            document.querySelector('#startScreen').style.display = 'none'
-            document.querySelector('#dialogueBox').style.display = 'block'
-            gsap.to('#overlap', {
-                opacity: 0
-            })
-            animate()
-        }
-    })
-
-
-}
 
 

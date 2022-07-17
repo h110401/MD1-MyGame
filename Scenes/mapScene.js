@@ -4,7 +4,6 @@ eventListener()
 
 function animate() {
 
-    animationId = requestAnimationFrame(animate)
 
     countDown()
 
@@ -26,6 +25,10 @@ function animate() {
     checkBattle()
 
     player.update()
+
+    setTimeout(() => {
+        animationId = requestAnimationFrame(animate)
+    }, 1000 / FPS)
 
 }
 
@@ -55,7 +58,7 @@ function checkBattle() {
         ) {
             if (player.monsterList[0].hp == 0) {
                 document.querySelector('#dialogueBox').style.display = 'block'
-                document.querySelector('#dialogueBox').innerHTML = 'You have no monster can fight!' 
+                document.querySelector('#dialogueBox').innerHTML = 'You have no monster can fight!'
                 return
             }
             if (player.animate && Math.random() < 0.5) {
