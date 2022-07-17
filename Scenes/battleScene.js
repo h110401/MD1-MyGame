@@ -5,6 +5,7 @@ function initBattle(playerName, enemyName) {
 //-----------------------------------Reset to new Battle--------------------------------//
 
     playerMonster = new Monster(monster[playerName])
+    playerMonster.hp = player.monsterList[0].hp
     playerMonster.position = {...battlePosition.player}
     enemyMonster = new Monster(monster[enemyName])
     enemyMonster.position = {...battlePosition.enemy}
@@ -17,7 +18,7 @@ function initBattle(playerName, enemyName) {
     document.querySelector('#userInterface').style.display = 'block'
     document.querySelector('#dialogueBox').style.display = 'none'
     document.querySelector('#enemyHealthBar').style.width = '100%'
-    document.querySelector('#playerHealthBar').style.width = '100%'
+    document.querySelector('#playerHealthBar').style.width = Math.floor((playerMonster.hp / playerMonster.maxHP) * 100) + '%'
     document.querySelector('#attackBox').replaceChildren()
 
     renderedSprites = [enemyMonster, playerMonster]
@@ -50,8 +51,10 @@ function initBattle(playerName, enemyName) {
                 target: enemyMonster
             })
 
-            if (enemyMonster.health <= 0) {
+            if (enemyMonster.hp <= 0) {
                 queue.push(() => {
+                    player.monsterList[0].hp = playerMonster.hp
+                    player.monsterList[0].exp += 10
                     enemyMonster.faint()
                     audio.battle.stop()
                     audio.victory.play()
@@ -88,7 +91,8 @@ function initBattle(playerName, enemyName) {
                 })
             })
 
-            if (playerMonster.health <= 0) {
+            if (playerMonster.hp <= 0) {
+                player.monsterList[0].hp = 0
                 queue.push(() => {
                     playerMonster.faint()
                 })
@@ -145,6 +149,7 @@ function animateBattle() {
     renderedSprites.forEach(sprite => {
         sprite.draw()
     })
+
 }
 
 // Perform Attack ----------------------------------------------------------------------------

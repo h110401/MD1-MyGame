@@ -37,6 +37,8 @@ let isClicked = false
 let delay = 30
 let timer = 0
 
+let animationStartId
+
 let animationId
 
 let animationBattleId
@@ -60,3 +62,25 @@ function countDown() {
     }
     // }
 }
+
+
+//---------------------------------------StartScene---------------------------------
+
+
+function startGame() {
+    gsap.to('#overlap', {
+        opacity: 1,
+        onComplete() {
+            document.querySelector('#startScreen').style.display = 'none'
+            document.querySelector('#dialogueBox').style.display = 'block'
+            gsap.to('#overlap', {
+                opacity: 0
+            })
+            animate()
+        }
+    })
+
+
+}
+
+

@@ -10,7 +10,9 @@ const monster = {
             hold: 10
         },
         animate: true,
-        attacks: [attacks.Tackle, attacks.FireBall]
+        attacks: [attacks.Tackle, attacks.FireBall],
+        hp: 100,
+        maxHP: 100,
     },
     Draggle: {
         name: 'Draggle',
@@ -22,6 +24,8 @@ const monster = {
             hold: 20
         },
         animate: true,
-        attacks: [attacks.Tackle]
+        attacks: [attacks.Tackle],
+        hp: 150,
+        maxHP: 150,
     }
 }

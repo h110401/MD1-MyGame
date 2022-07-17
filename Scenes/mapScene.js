@@ -29,7 +29,6 @@ function animate() {
 
 }
 
-animate()
 
 //Functions-----------------------------------------------------
 
@@ -70,8 +69,7 @@ function checkBattle() {
                             opacity: 1,
                             onComplete() {
                                 window.cancelAnimationFrame(animationId)
-
-                                initBattle('Emby', 'Draggle')
+                                initBattle(player.monsterList[0].name, randomEnemy())
                                 animateBattle()
                                 gsap.to('#overlap', {
                                     opacity: 0,
@@ -138,6 +136,10 @@ function eventListener() {
             audio.map.play()
         }
     })
+}
+
+function randomEnemy() {
+    return Math.floor(Math.random() * 2) == 0 ? 'Emby' : 'Draggle'
 }
 
 

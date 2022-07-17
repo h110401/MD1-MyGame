@@ -49,18 +49,42 @@
 
 <div style="display: inline-block; position: relative">
 
+    <div id="startScreen"
+         style="
+         border: 3px solid dimgray;
+         position: absolute;
+         top: 0;
+         left: 0;
+         right: 0;
+         bottom: 0;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         ">
+        <button onclick="startGame()"
+                style="
+                padding: 12px 30px;
+                border-radius: 10px;
+                border: 3px solid dimgray;
+                cursor: pointer;
+                ">
+            Start
+        </button>
+
+    </div>
+
     <div id="overlap"
          style="
-            background-color: black;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            opacity: 0;
-            z-index: 1;
-            pointer-events: none;
-            ">
+         background-color: black;
+         position: absolute;
+         top: 0;
+         left: 0;
+         right: 0;
+         bottom: 0;
+         opacity: 0;
+         z-index: 1;
+         pointer-events: none;
+         ">
     </div>
 
 
@@ -96,11 +120,15 @@
                         <div style="background-color: #ccc; height: 5px; margin: 10px 0"></div>
                         <div id="playerHealthBar"
                              style="
-                        position: absolute;
-                        background-color: green;
-                        height: 5px;
-                        margi-top: 10px;
-                        top:0;left:0;right:0"></div>
+                             position: absolute;
+                             background-color: green;
+                             height: 5px;
+                             margi-top: 10px;
+                             top:0;
+                             left:0;
+                             right:0
+                             ">
+                        </div>
                     </div>
                     <!------------------------------------Health-Bar----------------------------------->
 
@@ -108,14 +136,14 @@
                 <!------------------------------------------------------------------------------------------------------------------------------->
 
                 <div style="
-                position: absolute;
-                background: white;
-                border: 3px solid dimgray;
-                padding: 5px 12px;
-                width: 250px;
-                bottom: 50px;
-                right: 50px;
-                text-align: right
+                     position: absolute;
+                     background: white;
+                     border: 3px solid dimgray;
+                     padding: 5px 12px;
+                     width: 250px;
+                     bottom: 50px;
+                     right: 50px;
+                     text-align: right
                 "
                 >
 
@@ -126,11 +154,15 @@
                         <div style="background-color: #ccc; height: 5px; margin: 10px 0"></div>
                         <div id="enemyHealthBar"
                              style="
-                        position: absolute;
-                        background-color: red;
-                        height: 5px;
-                        margi-top: 10px;
-                        top:0;left:0;right:0"></div>
+                             position: absolute;
+                             background-color: red;
+                             height: 5px;
+                             margi-top: 10px;
+                             top:0;
+                             left:0;
+                             right:0
+                             ">
+                        </div>
                     </div>
                     <!-------------------------------------Health-Bar----------------------------------->
 
@@ -146,32 +178,29 @@
 
             <div class="grid-container-columns"
                  style="
-            background-color: white;
-            border: 3px solid dimgray
-            "
-            >
+                 background-color: white;
+                 border: 3px solid dimgray
+                 ">
                 <!-----------------------------------------------ATTACK------------------------------------------------------>
 
 
                 <div id="attackBox"
                      style="
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                background: dimgray;
-                "
-                >
+                     display: grid;
+                     grid-template-columns: repeat(2, 1fr);
+                     background: dimgray;
+                     ">
                     <button>Tackle</button>
                     <button>Fireball</button>
                 </div>
 
                 <div id="attackTypeBox"
                      style="
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-left: 3px solid dimgray
-                "
-                >
+                     display: flex;
+                     align-items: center;
+                     justify-content: center;
+                     border-left: 3px solid dimgray
+                     ">
                     <h1>Attack Type</h1>
                 </div>
 
@@ -186,17 +215,17 @@
     <!-----------------------------------------------DialogueBox----------------------------------------->
     <div id="dialogueBox"
          style="
-             position: absolute;
-             bottom: 0;
-             left: 0;
-             right: 0;
-             height: 110px;
-             background-color: white;
-             border: 3px solid dimgray;
-             padding: 12px;
-             cursor: pointer;
-             /*display: none;*/
-             ">
+         position: absolute;
+         bottom: 0;
+         left: 0;
+         right: 0;
+         height: 110px;
+         background-color: white;
+         border: 3px solid dimgray;
+         padding: 12px;
+         cursor: pointer;
+         display: none;
+         ">
         Move to the darker grass zone to active battle
     </div>
     <!---------------------------------------------------TOP------------------------------------------------------------->
@@ -206,6 +235,8 @@
 
 
 </div>
+
+
 
 <!--------------------------------------------------BOTTOM----------------------------------------------------------->
 

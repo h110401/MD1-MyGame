@@ -1,12 +1,13 @@
 class Monster extends Sprite {
-    constructor({image, position, frames, animate, isEnemy = false, name}) {
+    constructor({image, position, frames, animate, isEnemy = false, name, maxHP}) {
 
         super({image, position, frames, animate});
 
         this.isEnemy = isEnemy
 
         this.name = name
-        this.health = 100
+        this.hp = 100
+        this.maxHP = maxHP
         this.attacks = monster[this.name].attacks
     }
 
@@ -32,7 +33,7 @@ class Monster extends Sprite {
             rotation: this.isEnemy ? -1 : 1
         })
 
-        target.health -= attack.damage
+        target.hp -= attack.damage
 
         let distance = this.isEnemy ? -10 : 10
         let healthBar = this.isEnemy ? '#playerHealthBar' : '#enemyHealthBar'
@@ -63,7 +64,7 @@ class Monster extends Sprite {
                             repeat: 5
                         })
                         gsap.to(healthBar, {
-                            width: target.health + '%',
+                            width: Math.floor((target.hp / target.maxHP) * 100) + '%',
                         })
                     }
                 }).to(this.position, {
@@ -102,7 +103,7 @@ class Monster extends Sprite {
                                     repeat: 3
                                 })
                                 gsap.to(healthBar, {
-                                    width: target.health + '%'
+                                    width: Math.floor((target.hp / target.maxHP) * 100) + '%',
                                 })
                             }
                         })

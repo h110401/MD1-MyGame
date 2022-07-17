@@ -88,3 +88,40 @@ function arrayMapToPosition(array, className) {
     return arrayReturn
 }
 
+
+const title = new Image()
+title.src = 'image/Title.png'
+const startImage = new Image()
+startImage.src = 'image/startScene.png'
+const startScene = new Sprite({
+    image: startImage,
+    position: {
+        x: 0,
+        y: -100,
+        scale: 1.15
+    },
+    frames: {
+        max: 2,
+        hold: 40
+    },
+    animate: true
+})
+
+function animateStart() {
+    animationStartId = requestAnimationFrame(animateStart)
+    startScene.draw()
+    c.imageSmoothingEnabled = false
+    c.drawImage(title, 512 - title.width, 40, title.width * 2, title.height * 2)
+}
+
+animateStart()
+
+
+let Emby = {
+    name: 'Emby',
+    lv: 1,
+    exp: 0,
+    hp: 100
+}
+
+player.monsterList.push(Emby)
