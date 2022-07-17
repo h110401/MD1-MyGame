@@ -1,5 +1,4 @@
-
-const monster = {
+const monsterList = {
     Emby: {
         name: 'Emby',
         image: {
@@ -11,7 +10,7 @@ const monster = {
         },
         animate: true,
         attacks: [attacks.Tackle, attacks.FireBall],
-        hp: 100,
+        lv: 1,
         maxHP: 100,
     },
     Draggle: {
@@ -25,7 +24,6 @@ const monster = {
         },
         animate: true,
         attacks: [attacks.Tackle],
-        hp: 150,
         maxHP: 150,
     }
 }

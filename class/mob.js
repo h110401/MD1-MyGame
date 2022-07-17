@@ -1,14 +1,30 @@
-class Monster extends Sprite {
-    constructor({image, position, frames, animate, isEnemy = false, name, hp, maxHP}) {
+class Mob extends Sprite {
+    constructor({
+                    image,
+                    position,
+                    frames,
+                    animate,
+                    isEnemy = false,
+                    name,
+                    lv = 1
+                }) {
 
         super({image, position, frames, animate});
 
         this.isEnemy = isEnemy
 
         this.name = name
-        this.hp = hp
-        this.maxHP = maxHP
-        this.attacks = monster[this.name].attacks
+
+        this.attacks = monsterList[this.name].attacks
+        this.lv = lv
+        this.atk = 10 + 3 * this.lv
+        this.def = 1 + 1 * this.lv
+        this.maxHP = monsterList[this.name].maxHP + 10 * this.lv
+        this.hp = this.maxHP
+        this.exp = 0
+        this.maxEXP = 5 * this.lv
+        // this.maxMP = maxMP
+        // this.mp = maxMP
     }
 
     attack({attack, target}) {
@@ -33,7 +49,7 @@ class Monster extends Sprite {
             rotation: this.isEnemy ? -1 : 1
         })
 
-        target.hp -= attack.damage
+        target.hp -= (attack.damage * this.atk - target.def)
 
         let distance = this.isEnemy ? -10 : 10
         let healthBar = this.isEnemy ? '#playerHealthBar' : '#enemyHealthBar'
@@ -66,6 +82,7 @@ class Monster extends Sprite {
                         gsap.to(healthBar, {
                             width: Math.floor((target.hp / target.maxHP) * 100) + '%',
                         })
+                        target.statusUpdate()
                     }
                 }).to(this.position, {
                     x: this.isEnemy ? battlePosition.enemy.x : battlePosition.player.x,
@@ -105,6 +122,7 @@ class Monster extends Sprite {
                                 gsap.to(healthBar, {
                                     width: Math.floor((target.hp / target.maxHP) * 100) + '%',
                                 })
+                                target.statusUpdate()
                             }
                         })
 
@@ -126,5 +144,13 @@ class Monster extends Sprite {
         gsap.to(this.position, {
             y: this.position.y + 40
         })
+    }
+
+    statusUpdate() {
+        if (this.isEnemy) {
+            document.querySelector('#enemyHP').innerHTML = Math.round(this.hp) + '/' + this.maxHP
+        } else {
+            document.querySelector('#playerHP').innerHTML = Math.round(this.hp) + '/' + this.maxHP
+        }
     }
 }

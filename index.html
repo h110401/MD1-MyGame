@@ -13,6 +13,11 @@
             user-select: none;
         }
 
+        html {
+            background: url("image/startScene.gif") no-repeat 0 0;
+            background-size: cover;
+        }
+
         body {
             padding: 10px;
         }
@@ -113,8 +118,8 @@
                 left: 50px
                 "
                 >
-                    <h1 id="playerMonsterName">Emby</h1>
-
+                    <h1 id="playerMonsterName"></h1>
+                    <h1 id="playerHP"></h1>
                     <!------------------------------------Health-Bar----------------------------------->
                     <div style="position: relative">
                         <div style="background-color: #ccc; height: 5px; margin: 10px 0"></div>
@@ -147,8 +152,8 @@
                 "
                 >
 
-                    <h1 id="enemyMonsterName">Draggle</h1>
-
+                    <h1 id="enemyMonsterName"></h1>
+                    <h1 id="enemyHP"></h1>
                     <!------------------------------------Health-Bar----------------------------------->
                     <div style="position: relative">
                         <div style="background-color: #ccc; height: 5px; margin: 10px 0"></div>
@@ -237,7 +242,6 @@
 </div>
 
 
-
 <!--------------------------------------------------BOTTOM----------------------------------------------------------->
 
 
@@ -267,13 +271,13 @@
 
 <script src="data/attacks.js"></script>
 
-<script src="data/monster.js"></script>
+<script src="data/monsterList.js"></script>
 
 <!---------------------------------------------CLasses---------------------------------------------------->
 
 <script src="class/sprite.js"></script>
 <script src="class/player.js"></script>
-<script src="class/monster.js"></script>
+<script src="class/mob.js"></script>
 <script src="class/boundary.js"></script>
 
 <!---------------------------------------------CLasses---------------------------------------------------->

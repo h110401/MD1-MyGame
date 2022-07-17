@@ -26,9 +26,7 @@ function animate() {
 
     player.update()
 
-    setTimeout(() => {
-        animationId = requestAnimationFrame(animate)
-    }, 1000 / FPS)
+    animationId = requestAnimationFrame(animate)
 
 }
 

@@ -5,9 +5,7 @@ function animateStart() {
     startScene.draw()
     c.imageSmoothingEnabled = false
     c.drawImage(title, 512 - title.width, 40, title.width * 2, title.height * 2)
-    setTimeout(() => {
-        animationStartId = requestAnimationFrame(animateStart)
-    }, 1000 / FPS)
+    animationStartId = requestAnimationFrame(animateStart)
 }
 
 function startGame() {
@@ -25,17 +23,14 @@ function startGame() {
     })
 }
 
+let emby = new Mob({...monsterList.Emby, lv: 3})
 
 player.monsterList.push({
-    name: 'Emby',
-    lv: 1,
+    name: emby.name,
+    lv: emby.lv,
+    hp: emby.maxHP,
     exp: 0,
-    hp: monster.Emby.maxHP
 })
 
-player.monsterList.push({
-    name: 'Draggle',
-    lv: 1,
-    exp: 0,
-    hp: monster.Draggle.maxHP
-})
+
+console.log(player.monsterList)

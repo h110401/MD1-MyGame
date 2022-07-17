@@ -4,16 +4,17 @@
 function initBattle(playerName, enemyName) {
 //-----------------------------------Reset to new Battle--------------------------------//
 
-    playerMonster = new Monster(monster[playerName])
+    playerMonster = new Mob({...monsterList[playerName], lv: player.monsterList[0].lv})
     playerMonster.hp = player.monsterList[0].hp
     playerMonster.position = {...battlePosition.player}
-    enemyMonster = new Monster(monster[enemyName])
+
+    enemyMonster = new Mob({...monsterList[enemyName], lv: Math.floor(Math.random() * 2 + 1)})
     enemyMonster.position = {...battlePosition.enemy}
     enemyMonster.isEnemy = true
     enemyMonster.flip = true
 
-    document.querySelector('#playerMonsterName').innerHTML = playerMonster.name
-    document.querySelector('#enemyMonsterName').innerHTML = enemyMonster.name
+    document.querySelector('#playerMonsterName').innerHTML = playerMonster.name + ' Lv.' + playerMonster.lv
+    document.querySelector('#enemyMonsterName').innerHTML = enemyMonster.name + ' Lv.' + enemyMonster.lv
 
     document.querySelector('#userInterface').style.display = 'block'
     document.querySelector('#dialogueBox').style.display = 'none'
@@ -24,6 +25,9 @@ function initBattle(playerName, enemyName) {
     renderedSprites = [enemyMonster, playerMonster]
 
     queue = []
+
+    playerMonster.statusUpdate()
+    enemyMonster.statusUpdate()
 
 //-----------------------------------Reset to new Battle--------------------------------//
 
@@ -55,6 +59,12 @@ function initBattle(playerName, enemyName) {
                 queue.push(() => {
                     player.monsterList[0].hp = playerMonster.hp
                     player.monsterList[0].exp += 10
+                    if (player.monsterList[0].exp >= playerMonster.maxEXP) {
+                        player.monsterList[0].lv++
+                        player.monsterList[0].exp -= playerMonster.maxEXP
+                        playerMonster.lv++
+                        player.monsterList[0].hp = playerMonster.maxHP
+                    }
                     enemyMonster.faint()
                     audio.battle.stop()
                     audio.victory.play()
@@ -149,12 +159,8 @@ function animateBattle() {
         sprite.draw()
     })
 
-    setTimeout(() => {
-        animationBattleId = requestAnimationFrame(animateBattle)
-    }, 1000 / FPS)
+    animationBattleId = requestAnimationFrame(animateBattle)
 }
 
 // Perform Attack ----------------------------------------------------------------------------
 
-
-// Perform Attack Scene ----------------------------------------------------------------------------

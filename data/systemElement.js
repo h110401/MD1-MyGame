@@ -8,8 +8,6 @@ canvas.height = 576
 
 const offset = {x: -740, y: -650}
 
-const FPS = 60
-
 const keys = {
     w: false,
     s: false,
