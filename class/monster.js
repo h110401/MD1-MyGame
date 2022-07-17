@@ -1,12 +1,12 @@
 class Monster extends Sprite {
-    constructor({image, position, frames, animate, isEnemy = false, name, maxHP}) {
+    constructor({image, position, frames, animate, isEnemy = false, name, hp, maxHP}) {
 
         super({image, position, frames, animate});
 
         this.isEnemy = isEnemy
 
         this.name = name
-        this.hp = 100
+        this.hp = hp
         this.maxHP = maxHP
         this.attacks = monster[this.name].attacks
     }
