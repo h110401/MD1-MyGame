@@ -41,7 +41,7 @@ class Monster extends Sprite {
 
         switch (attack.name) {
             case 'Tackle':
-                timer += 42
+                timer += 40
                 tl.to(this.position, {
                     x: this.position.x - distance,
                     duration: 0.4
@@ -63,15 +63,15 @@ class Monster extends Sprite {
                             repeat: 5
                         })
                         gsap.to(healthBar, {
-                            width: target.health + '%'
+                            width: target.health + '%',
                         })
                     }
                 }).to(this.position, {
-                    x: this.position.x,
+                    x: this.isEnemy ? battlePosition.enemy.x : battlePosition.player.x,
                 })
                 break
             case 'FireBall':
-                timer += 72
+                timer += 60
                 tl.to(this.position, {
                     x: this.position.x - distance,
                     duration: 0.4
@@ -109,7 +109,7 @@ class Monster extends Sprite {
 
                     }
                 }).to(this.position, {
-                    x: this.position.x,
+                    x: this.isEnemy ? battlePosition.enemy.x : battlePosition.player.x,
                 })
                 break
         }

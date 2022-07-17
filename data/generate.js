@@ -1,39 +1,3 @@
-//Canvas---------------------------------------------------------------------
-
-const canvas = document.querySelector('canvas')
-const c = canvas.getContext('2d')
-
-canvas.width = 1024
-canvas.height = 576
-
-const offset = {x: -740, y: -650}
-
-//---------------------------------------------------------------------------
-
-
-//System-Element-------------------------------------------------------------
-const keys = {
-    w: false,
-    s: false,
-    a: false,
-    d: false,
-}
-
-const battlePosition = {
-    enemy: {
-        x: 795,
-        y: 90,
-        scale: 1.5
-    },
-    player: {
-        x: 270,
-        y: 290,
-        scale: 2
-    }
-}
-
-let battle = false
-
 const boundaries = arrayMapToPosition(collisionMap, Boundary)
 
 const battleZones = arrayMapToPosition(battleZoneMap, Boundary)
@@ -81,7 +45,7 @@ const player = new Player({
     image: playerDownImage,
     position: {
         x: canvas.width / 2 - 192 / 4 / 2,
-        y: canvas.height / 2 - 68 / 2,
+        y: canvas.height / 2 - 68 / 2
     },
     frames: {
         max: 4,
@@ -91,7 +55,7 @@ const player = new Player({
         up: playerUpImage,
         down: playerDownImage,
         left: playerLeftImage,
-        right: playerRightImage,
+        right: playerRightImage
     }
 })
 
@@ -100,19 +64,6 @@ const player = new Player({
 
 const moveables = [background, foreground, ...battleZones, ...boundaries]
 
-let isClicked = false
-let delay = 30
-let timer = 0
-
-let animationId
-
-let animationBattleId
-
-let renderedSprites = []
-let queue = []
-
-let playerMonster
-let enemyMonster
 
 //---------------------------------------------------------------------------
 
@@ -137,15 +88,3 @@ function arrayMapToPosition(array, className) {
     return arrayReturn
 }
 
-function countDown() {
-
-    console.log(timer)
-
-    if (isClicked) {
-        if (timer > 0) {
-            timer--
-        } else {
-            isClicked = false
-        }
-    }
-}

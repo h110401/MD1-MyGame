@@ -135,8 +135,8 @@ function initBattle(playerName, enemyName) {
 
 
 function animateBattle() {
-
     animationBattleId = requestAnimationFrame(animateBattle)
+
 
     countDown()
 
@@ -148,7 +148,6 @@ function animateBattle() {
 }
 
 // Perform Attack ----------------------------------------------------------------------------
-
 
 
 // Perform Attack Scene ----------------------------------------------------------------------------
