@@ -148,4 +148,7 @@ function randomEnemy() {
     return Math.floor(Math.random() * 2) == 0 ? 'Emby' : 'Draggle'
 }
 
+function initMap() {
+    document.querySelector('#saveGame').style.display = 'block'
+}
 

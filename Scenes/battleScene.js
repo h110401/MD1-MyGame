@@ -4,6 +4,8 @@
 function initBattle(playerName, enemyName) {
 //-----------------------------------Reset to new Battle--------------------------------//
 
+    document.querySelector('#saveGame').style.display = 'none'
+
     playerMonster = new Mob({...monsterList[playerName], lv: player.monsterList[0].lv})
     playerMonster.hp = player.monsterList[0].hp
     playerMonster.position = {...battlePosition.player}
@@ -77,6 +79,7 @@ function initBattle(playerName, enemyName) {
                             battle = false
                             audio.victory.stop()
                             audio.map.play()
+                            initMap()
                             animate()
                             document.querySelector('#userInterface').style.display = 'none'
                             document.querySelector('#dialogueBox').style.display = 'none'
@@ -109,15 +112,18 @@ function initBattle(playerName, enemyName) {
                             opacity: 1,
                             onComplete() {
                                 window.cancelAnimationFrame(animationBattleId)
-                                battle = false
                                 audio.battle.stop()
                                 audio.map.play()
-                                animate()
                                 document.querySelector('#userInterface').style.display = 'none'
                                 document.querySelector('#dialogueBox').style.display = 'none'
                                 gsap.to('#overlap', {
                                     opacity: 0,
-                                    delay: 0.4
+                                    delay: 0.3,
+                                    onComplete(){
+                                        battle = false
+                                        initMap()
+                                        animate()
+                                    }
                                 })
                             }
                         })
