@@ -62,8 +62,8 @@ function initBattle(playerName, enemyName) {
                     if (player.monsterList[0].exp >= playerMonster.maxEXP) {
                         player.monsterList[0].lv++
                         player.monsterList[0].exp -= playerMonster.maxEXP
-                        playerMonster.lv++
-                        player.monsterList[0].hp = playerMonster.maxHP
+                        let monster = new Mob({...monsterList[playerName], lv: player.monsterList[0].lv})
+                        player.monsterList[0].hp = monster.maxHP
                     }
                     enemyMonster.faint()
                     audio.battle.stop()
@@ -99,32 +99,31 @@ function initBattle(playerName, enemyName) {
                     attack: randomAttack,
                     target: playerMonster
                 })
-            })
-
-            if (playerMonster.hp <= 0) {
-                player.monsterList[0].hp = 0
-                queue.push(() => {
-                    playerMonster.faint()
-                })
-                queue.push(() => {
-                    gsap.to('#overlap', {
-                        opacity: 1,
-                        onComplete() {
-                            window.cancelAnimationFrame(animationBattleId)
-                            battle = false
-                            audio.battle.stop()
-                            audio.map.play()
-                            animate()
-                            document.querySelector('#userInterface').style.display = 'none'
-                            document.querySelector('#dialogueBox').style.display = 'none'
-                            gsap.to('#overlap', {
-                                opacity: 0,
-                                delay: 0.4
-                            })
-                        }
+                if (playerMonster.hp <= 0) {
+                    queue.push(() => {
+                        player.monsterList[0].hp = 0
+                        playerMonster.faint()
                     })
-                })
-            }
+                    queue.push(() => {
+                        gsap.to('#overlap', {
+                            opacity: 1,
+                            onComplete() {
+                                window.cancelAnimationFrame(animationBattleId)
+                                battle = false
+                                audio.battle.stop()
+                                audio.map.play()
+                                animate()
+                                document.querySelector('#userInterface').style.display = 'none'
+                                document.querySelector('#dialogueBox').style.display = 'none'
+                                gsap.to('#overlap', {
+                                    opacity: 0,
+                                    delay: 0.4
+                                })
+                            }
+                        })
+                    })
+                }
+            })
         })
         //-------------------------------Button Click Event-----------------------------//
 
@@ -150,6 +149,7 @@ function initBattle(playerName, enemyName) {
 
 
 function animateBattle() {
+
 
     countDown()
 

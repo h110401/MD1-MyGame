@@ -49,16 +49,11 @@ let enemyMonster
 
 
 function countDown() {
-
-    console.log(timer)
-
-    // if (isClicked) {
     if (timer > 0) {
         timer--
     } else {
         isClicked = false
     }
-    // }
 }
 
 

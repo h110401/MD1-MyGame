@@ -1,10 +1,10 @@
 document.querySelector('#dialogueBox').addEventListener('click', e => {
-    console.log(e.currentTarget)
-    console.log(isClicked)
 
-    if (isClicked) {
-        return
-    }
+    // if (isClicked) {
+    //     return
+    // }
+    console.log(queue)
+
     if (queue.length > 0) {
         queue[0]()
         queue.shift()

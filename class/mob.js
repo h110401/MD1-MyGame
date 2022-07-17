@@ -148,9 +148,9 @@ class Mob extends Sprite {
 
     statusUpdate() {
         if (this.isEnemy) {
-            document.querySelector('#enemyHP').innerHTML = Math.round(this.hp) + '/' + this.maxHP
+            document.querySelector('#enemyHP').innerHTML = (Math.round(this.hp) < 0 ? 0 : Math.round(this.hp)) + '/' + this.maxHP
         } else {
-            document.querySelector('#playerHP').innerHTML = Math.round(this.hp) + '/' + this.maxHP
+            document.querySelector('#playerHP').innerHTML = (Math.round(this.hp) < 0 ? 0 : Math.round(this.hp)) + '/' + this.maxHP
         }
     }
 }
