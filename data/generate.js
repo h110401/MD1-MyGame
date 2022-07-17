@@ -100,6 +100,19 @@ const player = new Player({
 
 const moveables = [background, foreground, ...battleZones, ...boundaries]
 
+let isClicked = false
+let delay = 30
+let timer = 0
+
+let animationId
+
+let animationBattleId
+
+let renderedSprites = []
+let queue = []
+
+let playerMonster
+let enemyMonster
 
 //---------------------------------------------------------------------------
 
@@ -122,4 +135,17 @@ function arrayMapToPosition(array, className) {
         })
     })
     return arrayReturn
+}
+
+function countDown() {
+
+    console.log(timer)
+
+    if (isClicked) {
+        if (timer > 0) {
+            timer--
+        } else {
+            isClicked = false
+        }
+    }
 }

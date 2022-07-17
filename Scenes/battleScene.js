@@ -1,18 +1,5 @@
 //Battle Scene -------------------------------------------------
 
-let isClicked = false
-let delay = 30
-let timer = 0
-
-let animationId
-
-let animationBattleId
-let renderedSprites
-let queue
-
-let playerMonster
-let enemyMonster
-
 
 function initBattle(playerName, enemyName) {
 //-----------------------------------Reset to new Battle--------------------------------//
@@ -40,13 +27,13 @@ function initBattle(playerName, enemyName) {
 //-----------------------------------Reset to new Battle--------------------------------//
 
 
-//-----------------------------------Draw Attack Buttons--------------------------------//
+//-----------------------------------Create Attack Buttons--------------------------------//
     playerMonster.attacks.forEach((attack) => {
         const button = document.createElement('button')
         button.innerHTML = attack.name
         document.querySelector('#attackBox').append(button)
     })
-//-----------------------------------Draw Attack Buttons--------------------------------//
+//-----------------------------------Create Attack Buttons--------------------------------//
 
 
     //-------------------------------Button Click Event-----------------------------//
@@ -79,6 +66,7 @@ function initBattle(playerName, enemyName) {
                             audio.map.play()
                             animate()
                             document.querySelector('#userInterface').style.display = 'none'
+                            document.querySelector('#dialogueBox').style.display = 'none'
                             gsap.to('#overlap', {
                                 opacity: 0,
                                 delay: 0.4
@@ -148,15 +136,9 @@ function initBattle(playerName, enemyName) {
 
 function animateBattle() {
 
-    if (isClicked) {
-        if (timer > 0) {
-            timer--
-        } else {
-            isClicked = false
-        }
-    }
-
     animationBattleId = requestAnimationFrame(animateBattle)
+
+    countDown()
 
     c.drawImage(battleBackgroundImage, 0, 0)
 
@@ -167,21 +149,6 @@ function animateBattle() {
 
 // Perform Attack ----------------------------------------------------------------------------
 
-document.querySelector('#dialogueBox').addEventListener('click', e => {
-
-    if (isClicked) {
-        return
-    }
-
-    if (queue.length > 0) {
-        queue[0]()
-        queue.shift()
-    } else {
-        e.currentTarget.style.display = 'none'
-    }
-    isClicked = true
-    timer = delay
-})
 
 
 // Perform Attack Scene ----------------------------------------------------------------------------

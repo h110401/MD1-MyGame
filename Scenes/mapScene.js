@@ -6,6 +6,8 @@ function animate() {
 
     animationId = requestAnimationFrame(animate)
 
+    countDown()
+
     background.draw()
 
     arrayToRenderer(boundaries)

@@ -1,5 +1,5 @@
 class Monster extends Sprite {
-    constructor({image, position, frames, animate, isEnemy = false, name, attacks}) {
+    constructor({image, position, frames, animate, isEnemy = false, name}) {
 
         super({image, position, frames, animate});
 
@@ -35,7 +35,7 @@ class Monster extends Sprite {
         target.health -= attack.damage
 
         let distance = this.isEnemy ? -10 : 10
-        let healthBar = this.isEnemy ? '#enemyHealthBar' : '#playerHealthBar'
+        let healthBar = this.isEnemy ? '#playerHealthBar' : '#enemyHealthBar'
 
         const tl = gsap.timeline()
 
