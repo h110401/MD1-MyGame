@@ -29,11 +29,7 @@ const battlePosition = {
     }
 }
 
-const bagPosition = {
-    x: 100,
-    y: 100,
-    scale: 1.5
-}
+
 
 let battle = false
 

@@ -59,7 +59,9 @@ const player = new Player({
     }
 })
 
-const playerBag = new Bag()
+const bag = new Bag()
+
+
 
 //---------------------------------------------------------------------------
 

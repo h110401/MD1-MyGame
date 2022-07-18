@@ -53,7 +53,7 @@ function checkBattle() {
             && player.position.y + player.height > zone.position.y
             && player.position.y + player.height < zone.position.y + zone.height + 3
         ) {
-            if (playerBag.monster[playerBag.combatIndex].hp === 0) {
+            if (bag.monster[bag.combatIndex].hp === 0) {
                 document.querySelector('#dialogueBox').style.display = 'block'
                 document.querySelector('#dialogueBox').innerHTML = "Your monster can't fight!"
                 return
@@ -74,7 +74,7 @@ function checkBattle() {
                             opacity: 1,
                             onComplete() {
                                 window.cancelAnimationFrame(animationId)
-                                initBattle(playerBag.monster[playerBag.combatIndex].name, randomEnemy())
+                                initBattle(bag.monster[bag.combatIndex].name, randomEnemy())
                                 animateBattle()
                                 gsap.to('#overlap', {
                                     opacity: 0,
