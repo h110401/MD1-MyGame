@@ -65,12 +65,18 @@ function initBattle(playerName, enemyName) {
                     playerBag.monster.forEach(monster => {
                         if (monster.name !== playerName) monster.exp += 2
                     })
-                    if (playerBag.monster[playerBag.combatIndex].exp >= playerMonster.maxEXP) {
-                        playerBag.monster[playerBag.combatIndex].lv++
-                        playerBag.monster[playerBag.combatIndex].exp -= playerMonster.maxEXP
-                        let monster = new Mob({...monsterList[playerName], lv: playerBag.monster[playerBag.combatIndex].lv})
-                        playerBag.monster[playerBag.combatIndex].hp = monster.maxHP
-                    }
+                    playerBag.monster.forEach(monster => {
+                        if (monster.exp >= monster.maxEXP) {
+                            monster.lv++
+                            monster.exp -= playerMonster.maxEXP
+                            let monsterr = new Mob({...monsterList[playerName], lv: monster.lv})
+                            monster.hp = monsterr.maxHP
+                            monster.maxHP = monsterr.maxHP
+                            monster.atk = monsterr.atk
+                            monster.def = monsterr.def
+                        }
+                    })
+
                     enemyMonster.faint()
                     audio.battle.stop()
                     audio.victory.play()
