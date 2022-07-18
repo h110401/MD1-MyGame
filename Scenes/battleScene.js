@@ -166,7 +166,6 @@ function initBattle(playerName, enemyName) {
 
 function animateBattle() {
 
-
     countDown()
 
     c.drawImage(battleBackgroundImage, 0, 0)

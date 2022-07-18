@@ -1,3 +1,4 @@
+initMainMenu()
 animateStart()
 
 function animateStart() {
@@ -25,20 +26,17 @@ function startGame() {
     })
 }
 
+function initMainMenu() {
+    if (localStorage.length === 0) {
 
+        bag.addMonster('Emby', 3)
 
-if (localStorage.length === 0) {
+        bag.addMonster('Draggle', 4)
 
-    bag.addMonster('Emby', 3)
-
-    bag.addMonster('Draggle', 4)
-
-} else {
-    bag.monster = JSON.parse(localStorage.getItem('playerMonsterList'))
-}
-
-function initGame() {
-
+    } else {
+        document.querySelector('#continueGameBtn').style.display = 'block'
+        bag.monster = JSON.parse(localStorage.getItem('playerMonsterList'))
+    }
 }
 
 
@@ -87,10 +85,13 @@ function backToMainMenu() {
             gsap.to('#overlap', {
                 opacity: 0
             })
+            initMainMenu()
             animateStart()
         }
     })
 }
+
+
 
 function closeBag() {
     bag.close()
@@ -100,7 +101,6 @@ function openBag() {
     bag.open()
 }
 
-
 let mob = new Mob({...monsterList[bag.monster[bag.combatIndex].name], position: bag.position})
 
 function animateBag() {
@@ -109,6 +109,7 @@ function animateBag() {
     mob.draw()
 
     animationBag = requestAnimationFrame(animateBag)
+
 }
 
 

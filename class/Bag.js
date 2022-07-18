@@ -59,6 +59,7 @@ class Bag {
         let monsterInfor = document.querySelector('#monsterInfor')
 
         monsterL.replaceChildren()
+
         this.monster.forEach(monster => {
             let button = document.createElement('button')
             button.innerHTML = monster.name
@@ -90,6 +91,7 @@ class Bag {
                     + this.attacksToString(this.monster[this.combatIndex].name)
             })
             button.addEventListener('click', e => {
+                e.currentTarget.blur()
                 this.setCombatIndex(i)
                 document.querySelectorAll('#monsterList > button').forEach((button, i) => {
                     i === this.combatIndex ? button.style.color = 'green' : button.style.color = 'black'
