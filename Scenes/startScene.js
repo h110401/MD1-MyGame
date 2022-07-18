@@ -112,14 +112,12 @@ function backToMainMenu() {
 }
 
 function closeBag() {
-    document.querySelector('canvas').style.zIndex = '0'
     window.cancelAnimationFrame(animationBag)
     document.querySelector('#bag').style.display = 'none'
     animate()
 }
 
 function openBag() {
-    document.querySelector('canvas').style.zIndex = '10'
     window.cancelAnimationFrame(animationId)
     initBag()
     animateBag()
