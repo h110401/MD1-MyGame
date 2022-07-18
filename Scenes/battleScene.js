@@ -13,7 +13,7 @@ function initBattle(playerName, enemyName) {
 
     enemyMonster = new Mob({
         ...monsterList[enemyName],
-        lv: Math.floor((bag.monster[0].lv + bag.monster[1].lv) / 2) - Math.floor(Math.random() * 3) === 0 ? 1 : Math.floor((bag.monster[0].lv + bag.monster[1].lv) / 2) - Math.floor(Math.random() * 3)
+        lv: Math.floor(Math.random() * (bag.monster[0] + bag.monster[1]) / 2 ) + 1
     })
     enemyMonster.position = {...battlePosition.enemy}
     enemyMonster.isEnemy = true
