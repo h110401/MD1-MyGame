@@ -53,9 +53,9 @@ function checkBattle() {
             && player.position.y + player.height > zone.position.y
             && player.position.y + player.height < zone.position.y + zone.height + 3
         ) {
-            if (playerBag.monster[0].hp == 0) {
+            if (playerBag.monster[playerBag.combatIndex].hp === 0) {
                 document.querySelector('#dialogueBox').style.display = 'block'
-                document.querySelector('#dialogueBox').innerHTML = 'You have no monster can fight!'
+                document.querySelector('#dialogueBox').innerHTML = "Your monster can't fight!"
                 return
             }
             if (player.animate && Math.random() < 0.5) {
