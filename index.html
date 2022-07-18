@@ -31,9 +31,10 @@
             border: 1px solid dimgray;
         }
 
-        #attackBox > button{
+        #attackBox > button {
             border: none;
         }
+
         button:hover {
             background-color: #e7d7ff;
         }
@@ -64,6 +65,8 @@
 </head>
 
 <body>
+
+<!-----------------------------------DIV that contain all-------------------------------------------------->
 
 <div style="display: inline-block; position: relative; border-radius: 25px; overflow: hidden">
 
@@ -133,7 +136,7 @@
 
     <!-----------------------------------------------StartScene------------------------------------------------------>
 
-
+    <!---------------------------------------DIV use for changing scene--------------------------------------------->
     <div id="overlap"
          style="
          background-color: black;
@@ -148,7 +151,9 @@
          pointer-events: none;
          ">
     </div>
+    <!---------------------------------------DIV use for changing scene--------------------------------------------->
 
+    <!---------------------------------------INGAME MENU--------------------------------------------->
     <div id="menu" style="position: absolute; top: 10px;right: 10px; display: none">
         <button onclick="saveGame()"
                 style="
@@ -175,7 +180,9 @@
                 ">BAG
         </button>
     </div>
+    <!---------------------------------------INGAME MENU--------------------------------------------->
 
+    <!---------------------------------------Bag--------------------------------------------->
     <div id="bag"
          style="
          position: absolute;
@@ -259,10 +266,12 @@
         </div>
 
     </div>
+    <!---------------------------------------Bag--------------------------------------------->
+
 
     <canvas style="border: 5px solid #707070; background: dimgray; border-radius: 25px"></canvas>
 
-
+    <!---------------------------------------Battle Infor----------------------------------------------------->
     <div id="userInterface" style="display: none; border-radius: 25px; overflow: hidden">
 
         <div class="grid-container-rows"
@@ -275,7 +284,7 @@
              border-radius: 25px; overflow: hidden
              ">
             <div style="position: relative">
-                <!--------------------------------------------Infor Box--------------------------------------------------------->
+                <!------------------------------------Infor Box---------------------------------------->
                 <div style="
                 position: absolute;
                 background: white;
@@ -388,6 +397,8 @@
         </div>
 
     </div>
+    <!---------------------------------------Battle Infor----------------------------------------------------->
+
     <!-----------------------------------------------DialogueBox----------------------------------------->
 
     <div id="dialogueBox"
@@ -407,6 +418,8 @@
         Move to the darker grass zone to active battle
     </div>
 
+
+    <!-------------------------------------------------------GUIDE-------------------------------------------------->
     <div style="
          position: absolute;
          width: 220px;
@@ -441,36 +454,27 @@
         <div style="color: dimgray; position: absolute; bottom: 20px; text-align: center; line-height: 30px">CLICK
             DIALOUGE BOX TO FIGHT
         </div>
-
-
     </div>
-    <!---------------------------------------------------TOP------------------------------------------------------------->
-
-
-    <!---------------------------------------------------TOP------------------------------------------------------------->
+    <!------------------------------------------------------GUIDE------------------------------------------------->
 
 
 </div>
 
-
-<!--------------------------------------------------BOTTOM----------------------------------------------------------->
-
-
-<!---------------------------------------------GSAP---------------------------------------------------->
+<!-----------------------------------------------------GSAP------------------------------------------------------------>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"
         integrity="sha512-VEBjfxWUOyzl0bAwh4gdLEaQyDYPvLrZql3pw1ifgb6fhEvZl9iDDehwHZ+dsMzA0Jfww8Xt7COSZuJ/slxc4Q=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<!---------------------------------------------GSAP---------------------------------------------------->
+<!-----------------------------------------------------GSAP------------------------------------------------------------>
 
 
-<!---------------------------------------Howler-Control-Audio-------------------------------------------------->
+<!--------------------------------------------Howler-Control-Audio----------------------------------------------------->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"
         integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<!---------------------------------------------SYSTEM---------------------------------------------------------->
 
+<!---------------------------------------------------SYSTEM---------------------------------------------------------->
 
 <script src="data/systemElement.js"></script>
 
