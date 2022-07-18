@@ -121,6 +121,9 @@ function initBattle(playerName, enemyName) {
                         gsap.to('#overlap', {
                             opacity: 1,
                             onComplete() {
+                                battle = false
+                                initMap()
+                                animate()
                                 window.cancelAnimationFrame(animationBattleId)
                                 audio.battle.stop()
                                 audio.map.play()
@@ -128,12 +131,7 @@ function initBattle(playerName, enemyName) {
                                 document.querySelector('#dialogueBox').style.display = 'none'
                                 gsap.to('#overlap', {
                                     opacity: 0,
-                                    delay: 0.3,
-                                    onComplete() {
-                                        battle = false
-                                        initMap()
-                                        animate()
-                                    }
+                                    delay: 0.3
                                 })
                             }
                         })
