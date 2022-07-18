@@ -4,7 +4,6 @@ eventListener()
 
 function animate() {
 
-
     countDown()
 
     background.draw()
@@ -54,7 +53,7 @@ function checkBattle() {
             && player.position.y + player.height > zone.position.y
             && player.position.y + player.height < zone.position.y + zone.height + 3
         ) {
-            if (player.monsterList[0].hp == 0) {
+            if (playerBag.monster[0].hp == 0) {
                 document.querySelector('#dialogueBox').style.display = 'block'
                 document.querySelector('#dialogueBox').innerHTML = 'You have no monster can fight!'
                 return
@@ -75,7 +74,7 @@ function checkBattle() {
                             opacity: 1,
                             onComplete() {
                                 window.cancelAnimationFrame(animationId)
-                                initBattle(player.monsterList[0].name, randomEnemy())
+                                initBattle(playerBag.monster[0].name, randomEnemy())
                                 animateBattle()
                                 gsap.to('#overlap', {
                                     opacity: 0,
@@ -149,6 +148,6 @@ function randomEnemy() {
 }
 
 function initMap() {
-    document.querySelector('#saveGame').style.display = 'block'
+    document.querySelector('#menu').style.display = 'block'
 }
 

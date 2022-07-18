@@ -47,6 +47,10 @@
             grid-template-columns: auto 33%;
         }
 
+        #monsterList > button {
+            height: 60px;
+        }
+
     </style>
 </head>
 
@@ -134,7 +138,7 @@
          ">
     </div>
 
-    <div id="saveGame" style="position: absolute; top: 10px;right: 10px; display: none">
+    <div id="menu" style="position: absolute; top: 10px;right: 10px; display: none">
         <input type="button" value="SAVE" onfocus="blur()"
                onclick="saveGame()"
                style="
@@ -143,6 +147,48 @@
                 border: 3px solid dimgray;
                 cursor: pointer;
                 ">
+        <input type="button" value="MAIN MENU" onfocus="blur()"
+               onclick="backToMainMenu()"
+               style="
+                padding: 12px 40px;
+                border-radius: 10px;
+                border: 3px solid dimgray;
+                cursor: pointer;
+                ">
+        <input type="button" value="BAG" onfocus="blur()"
+               onclick="openBag()"
+               style="
+                padding: 12px 40px;
+                border-radius: 10px;
+                border: 3px solid dimgray;
+                cursor: pointer;
+                ">
+    </div>
+
+    <div id="bag"
+         style="position: absolute; top:0;left: 0;right: 0;bottom: 0; display: none;align-items: center;justify-content: center">
+
+        <div style="border: 3px solid black; background: white; width:600px;height: 400px; display: grid; grid-template-columns: 40% auto; position: relative">
+            <button onclick="closeBag()"
+                    style="position: absolute; width: 30px;height: 30px;border: 1px solid black; background: white; top: -10px; right: -10px; justify-content: center; align-items: center; display: flex">
+                &times;
+            </button>
+
+            <div id="monsterList"
+                 style="border: 3px solid black; margin: 10px 5px 10px 10px; display: grid; align-content: start;overflow: auto">
+                <!--                <button style="height: 100px"></button>-->
+                <!--                <button style="height: 100px"></button>-->
+            </div>
+
+            <div style="border: 3px solid black; margin: 10px 10px 10px 5px; display: grid; grid-template-rows: 20% auto">
+                <div id="monsterName"
+                     style="border: 1px solid black; display: flex; align-items: center; justify-content: center"></div>
+                <div id="monsterInfor"
+                     style="border: 1px solid black; padding: 20px 20px"></div>
+            </div>
+
+        </div>
+
     </div>
 
     <canvas style="border: 5px solid #707070; background: dimgray"></canvas>
@@ -281,6 +327,7 @@
          border: 5px solid dimgray;
          padding: 12px;
          cursor: pointer;
+         display: none;
          ">
         Move to the darker grass zone to active battle
     </div>
@@ -326,10 +373,11 @@
 
 <!---------------------------------------------CLasses---------------------------------------------------->
 
-<script src="class/sprite.js"></script>
-<script src="class/player.js"></script>
-<script src="class/mob.js"></script>
-<script src="class/boundary.js"></script>
+<script src="class/Sprite.js"></script>
+<script src="class/Player.js"></script>
+<script src="class/Mob.js"></script>
+<script src="class/Boundary.js"></script>
+<script src="class/Bag.js"></script>
 
 <!---------------------------------------------CLasses---------------------------------------------------->
 

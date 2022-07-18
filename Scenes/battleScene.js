@@ -4,10 +4,11 @@
 function initBattle(playerName, enemyName) {
 //-----------------------------------Reset to new Battle--------------------------------//
 
-    document.querySelector('#saveGame').style.display = 'none'
+    document.querySelector('#menu').style.display = 'none'
+    document.querySelector('#bag').style.display = 'none'
 
-    playerMonster = new Mob({...monsterList[playerName], lv: player.monsterList[0].lv})
-    playerMonster.hp = player.monsterList[0].hp
+    playerMonster = new Mob({...monsterList[playerName], lv: playerBag.monster[0].lv})
+    playerMonster.hp = playerBag.monster[0].hp
     playerMonster.position = {...battlePosition.player}
 
     enemyMonster = new Mob({...monsterList[enemyName], lv: Math.floor(Math.random() * 2 + 1)})
@@ -44,7 +45,7 @@ function initBattle(playerName, enemyName) {
 
 
     //-------------------------------Button Click Event-----------------------------//
-    document.querySelectorAll('button').forEach(button => {
+    document.querySelectorAll('#attackBox > button').forEach(button => {
         button.addEventListener('click', e => {
             if (timer > 0) return
             isClicked = true
@@ -59,13 +60,16 @@ function initBattle(playerName, enemyName) {
 
             if (enemyMonster.hp <= 0) {
                 queue.push(() => {
-                    player.monsterList[0].hp = playerMonster.hp
-                    player.monsterList[0].exp += 10
-                    if (player.monsterList[0].exp >= playerMonster.maxEXP) {
-                        player.monsterList[0].lv++
-                        player.monsterList[0].exp -= playerMonster.maxEXP
-                        let monster = new Mob({...monsterList[playerName], lv: player.monsterList[0].lv})
-                        player.monsterList[0].hp = monster.maxHP
+                    playerBag.monster[0].hp = playerMonster.hp
+                    playerBag.monster[0].exp += 10
+                    playerBag.monster.forEach(monster => {
+                        if (monster.name !== playerName) monster.exp += 2
+                    })
+                    if (playerBag.monster[0].exp >= playerMonster.maxEXP) {
+                        playerBag.monster[0].lv++
+                        playerBag.monster[0].exp -= playerMonster.maxEXP
+                        let monster = new Mob({...monsterList[playerName], lv: playerBag.monster[0].lv})
+                        playerBag.monster[0].hp = monster.maxHP
                     }
                     enemyMonster.faint()
                     audio.battle.stop()
@@ -104,7 +108,7 @@ function initBattle(playerName, enemyName) {
                 })
                 if (playerMonster.hp <= 0) {
                     queue.push(() => {
-                        player.monsterList[0].hp = 0
+                        playerBag.monster[0].hp = 0
                         playerMonster.faint()
                     })
                     queue.push(() => {
@@ -119,7 +123,7 @@ function initBattle(playerName, enemyName) {
                                 gsap.to('#overlap', {
                                     opacity: 0,
                                     delay: 0.3,
-                                    onComplete(){
+                                    onComplete() {
                                         battle = false
                                         initMap()
                                         animate()

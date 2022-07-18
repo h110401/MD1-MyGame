@@ -14,7 +14,6 @@ class Player extends Sprite {
             this.width = this.image.width / this.frames.max
             this.height = this.image.height
         }
-        this.monsterList = []
     }
 
     update() {

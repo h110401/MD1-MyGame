@@ -29,6 +29,12 @@ const battlePosition = {
     }
 }
 
+const bagPosition = {
+    x: 100,
+    y: 100,
+    scale: 1.5
+}
+
 let battle = false
 
 let isClicked = false
@@ -38,6 +44,8 @@ let timer = 0
 let animationStartId
 
 let animationId
+
+let animationBag
 
 let animationBattleId
 
