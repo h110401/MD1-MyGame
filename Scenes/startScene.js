@@ -36,13 +36,14 @@ function initMainMenu() {
     } else {
         document.querySelector('#continueGameBtn').style.display = 'block'
         bag.monster = JSON.parse(localStorage.getItem('playerMonsterList'))
+
     }
 }
 
 
 function saveGame() {
     localStorage.setItem('playerMonsterList', JSON.stringify(bag.monster))
-    console.log(JSON.parse(localStorage.getItem('playerMonsterList')))
+    localStorage.setItem('playerPosition', JSON.stringify(background.position))
 }
 
 function startNewGame() {
@@ -90,7 +91,6 @@ function backToMainMenu() {
         }
     })
 }
-
 
 
 function closeBag() {

@@ -24,14 +24,22 @@
         }
 
         button {
-            color: darkslategray;
+            background: #fcf4ff;
+            color: #2f424f;
             cursor: pointer;
             font-size: 16px;
             border: 1px solid dimgray;
         }
 
+        #attackBox > button{
+            border: none;
+        }
         button:hover {
-            background-color: #ccc;
+            background-color: #e7d7ff;
+        }
+
+        button:active {
+            background: #d6bdec;
         }
 
         h1 {
@@ -57,13 +65,14 @@
 
 <body>
 
-<div style="display: inline-block; position: relative">
+<div style="display: inline-block; position: relative; border-radius: 25px; overflow: hidden">
 
     <!-----------------------------------------------StartScene------------------------------------------------------>
 
     <div id="startScreen"
          style="
          border: 5px solid dimgray;
+         border-radius: 25px;
          position: absolute;
          top: 0;
          left: 0;
@@ -128,6 +137,7 @@
     <div id="overlap"
          style="
          background-color: black;
+         border-radius: 25px;
          position: absolute;
          top: 0;
          left: 0;
@@ -140,8 +150,7 @@
     </div>
 
     <div id="menu" style="position: absolute; top: 10px;right: 10px; display: none">
-        <button onfocus="blur()"
-                onclick="saveGame()"
+        <button onclick="saveGame()"
                 style="
                 padding: 12px 40px;
                 border-radius: 10px;
@@ -149,8 +158,7 @@
                 cursor: pointer;
                 ">SAVE
         </button>
-        <button onfocus="blur()"
-                onclick="backToMainMenu()"
+        <button onclick="backToMainMenu()"
                 style="
                 padding: 12px 40px;
                 border-radius: 10px;
@@ -158,8 +166,7 @@
                 cursor: pointer;
                 ">MAIN MENU
         </button>
-        <button onfocus="blur()"
-                onclick="openBag()"
+        <button onclick="openBag()"
                 style="
                 padding: 12px 40px;
                 border-radius: 10px;
@@ -170,35 +177,93 @@
     </div>
 
     <div id="bag"
-         style="position: absolute; top:0;left: 0;right: 0;bottom: 0; display: none;align-items: center;justify-content: center">
+         style="
+         position: absolute;
+         top:0;
+         left: 0;
+         right: 0;
+         bottom: 0;
+         display: none;
+         align-items: center;
+         justify-content: center">
 
-        <div style="border: 3px solid black; background: white; width:600px;height: 400px; display: grid; grid-template-columns: 40% auto; position: relative">
+        <div style="
+             border: 3px solid #2f454f;
+             border-radius: 25px;
+             background: #aedfe5;
+             width:600px;
+             height: 400px;
+             display: grid;
+             grid-template-columns: 40% auto;
+             position: relative
+             ">
             <button onclick="closeBag()"
-                    style="position: absolute; width: 30px;height: 30px;border: 1px solid black; background: white; top: -10px; right: -10px; justify-content: center; align-items: center; display: flex">
+                    style="
+                    position: absolute;
+                    width: 30px;
+                    height: 30px;
+                    border: 3px solid #2f454f;
+                    border-radius: 10px;
+                    font-size: 30px;
+                    color: #efeded;
+                    padding: 20px;
+                    background: #ce4242;
+                    top: -12px;
+                    right: -12px;
+                    justify-content: center;
+                    align-items: center;
+                    display: flex
+                    ">
                 &times;
             </button>
 
             <div id="monsterList"
-                 style="border: 3px solid black; margin: 10px 5px 10px 10px; display: grid; align-content: start;overflow: auto">
+                 style="
+                 background: #e7e7e7;
+                 border: 3px solid #2f454f;
+                 border-radius: 25px;
+                 margin: 10px 5px 10px 10px;
+                 display: grid;
+                 align-content: start;
+                 overflow: auto
+                 ">
                 <!--                <button style="height: 100px"></button>-->
                 <!--                <button style="height: 100px"></button>-->
             </div>
 
-            <div style="border: 3px solid black; margin: 10px 10px 10px 5px; display: grid; grid-template-rows: 20% auto">
+            <div style="
+                 border: 3px solid #2f454f;
+                 border-radius: 25px;
+                 margin: 10px 10px 10px 5px;
+                 display: grid;
+                 grid-template-rows: 20% auto
+                 ">
                 <div id="monsterName"
-                     style="border: 1px solid black; display: flex; align-items: center; justify-content: center"></div>
+                     style="
+                     background: #e7e7e7;
+                     border: 1px solid #2f454f;
+                     border-radius: 20px 20px 0 0;
+                     display: flex;
+                     align-items: center;
+                     justify-content: center
+                     "></div>
                 <div id="monsterInfor"
-                     style="border: 1px solid black; padding: 20px 20px"></div>
+                     style="
+                     background: #e7e7e7;
+                     border: 1px solid #2f454f;
+                     border-radius: 0 0 20px 20px;
+                     padding: 20px 20px
+                     "></div>
             </div>
 
         </div>
 
     </div>
 
-    <canvas style="border: 5px solid #707070; background: dimgray"></canvas>
+    <canvas style="border: 5px solid #707070; background: dimgray; border-radius: 25px"></canvas>
 
 
-    <div id="userInterface" style="display: none">
+    <div id="userInterface" style="display: none; border-radius: 25px; overflow: hidden">
 
         <div class="grid-container-rows"
              style="
@@ -207,6 +272,7 @@
              left: 0;
              right: 0;
              bottom: 0;
+             border-radius: 25px; overflow: hidden
              ">
             <div style="position: relative">
                 <!--------------------------------------------Infor Box--------------------------------------------------------->
@@ -214,6 +280,7 @@
                 position: absolute;
                 background: white;
                 border: 3px solid dimgray;
+                border-radius: 10px;
                 padding: 5px 12px;
                 width: 250px;
                 top: 50px;
@@ -246,6 +313,7 @@
                      position: absolute;
                      background: white;
                      border: 3px solid dimgray;
+                     border-radius: 10px;
                      padding: 5px 12px;
                      width: 250px;
                      bottom: 50px;
@@ -286,7 +354,9 @@
             <div class="grid-container-columns"
                  style="
                  background-color: white;
-                 border: 3px solid dimgray
+                 border: 5px solid dimgray;
+                 border-radius: 0 0 25px 25px;
+                 overflow: hidden;
                  ">
                 <!-----------------------------------------------ATTACK------------------------------------------------------>
 
@@ -296,8 +366,8 @@
                      grid-template-columns: repeat(2, 1fr);
                      background: dimgray;
                      ">
-                    <button>Tackle</button>
-                    <button>Fireball</button>
+                    <!--                    <button>Tackle</button>-->
+                    <!--                    <button>Fireball</button>-->
                 </div>
 
                 <div id="attackTypeBox"
@@ -329,18 +399,18 @@
          height: 110px;
          background-color: white;
          border: 5px solid dimgray;
+         border-radius: 0 0 25px 25px;
          padding: 12px;
          cursor: pointer;
          display: none;
          ">
-        W,A,S,D to move.<br>
         Move to the darker grass zone to active battle
     </div>
 
     <div style="
          position: absolute;
          width: 220px;
-         height: 476px;
+         height: 340px;
          background: #fff;
          border: 5px solid dimgray;
          border-radius: 25px;
@@ -351,24 +421,24 @@
          align-items: center;
          padding-top: 100px;
          ">
-        <div style="color: dimgray; position: absolute; top: 50px">PRESS</div>
-        <div style="border: 3px solid dimgray; position: absolute; padding: 15px; border-radius: 10px; color: dimgray">
+        <div style="color: dimgray; position: absolute; top: 30px">PRESS</div>
+        <div style="border: 3px solid dimgray; position: absolute; padding: 15px; border-radius: 10px; color: dimgray; top: 60px">
             W
         </div>
-        <div style="border: 3px solid dimgray; position: absolute; padding: 15px; border-radius: 10px; color: dimgray; top: 170px">
+        <div style="border: 3px solid dimgray; position: absolute; padding: 15px; border-radius: 10px; color: dimgray; top: 120px">
             S
         </div>
-        <div style="border: 3px solid dimgray; position: absolute; padding: 15px; border-radius: 10px; color: dimgray; top: 170px; left: 15px">
+        <div style="border: 3px solid dimgray; position: absolute; padding: 15px; border-radius: 10px; color: dimgray; top: 120px; left: 15px">
             A
         </div>
-        <div style="border: 3px solid dimgray; position: absolute; padding: 15px; border-radius: 10px; color: dimgray; top: 170px; right: 15px">
+        <div style="border: 3px solid dimgray; position: absolute; padding: 15px; border-radius: 10px; color: dimgray; top: 120px; right: 15px">
             D
         </div>
-        <div style="color: dimgray; position: absolute; top: 260px">TO MOVE</div>
-        <div style="width: 140px; border: 3px solid dimgray; bottom: 160px; position: absolute; height: 60px; color: dimgray">
+        <div style="color: dimgray; position: absolute; top: 190px">TO MOVE</div>
+        <div style="width: 140px; border: 3px solid dimgray; bottom: 130px; position: absolute; height: 50px; color: dimgray">
             ...
         </div>
-        <div style="color: dimgray; position: absolute; bottom: 40px; text-align: center; line-height: 30px">CLICK
+        <div style="color: dimgray; position: absolute; bottom: 20px; text-align: center; line-height: 30px">CLICK
             DIALOUGE BOX TO FIGHT
         </div>
 
@@ -400,7 +470,6 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!---------------------------------------------SYSTEM---------------------------------------------------------->
-
 
 
 <script src="data/systemElement.js"></script>

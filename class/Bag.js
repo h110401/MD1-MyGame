@@ -35,9 +35,9 @@ class Bag {
 
     draw() {
 
-        c.fillStyle = '#91C1AD'
+        c.fillStyle = '#ffffff'
         c.roundRect(95,95,110,110, 20).fill()
-        c.strokeStyle = 'darkslategray'
+        c.strokeStyle = '#2f454f'
         c.lineWidth = 4
         c.roundRect(95,95,110,110, 20).stroke()
 

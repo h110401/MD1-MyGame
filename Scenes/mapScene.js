@@ -1,4 +1,3 @@
-eventListener()
 
 //--------------------------------------------------------------
 
@@ -90,58 +89,6 @@ function checkBattle() {
     })
 }
 
-function eventListener() {
-
-    let played = false
-
-    window.addEventListener('keydown', e => {
-        if (!played) {
-            played = true
-            audio.map.play()
-        }
-        switch (e.key) {
-            case 'Tab':
-                e.preventDefault()
-                break
-            case 'w':
-                keys.w = true
-                break
-            case 's':
-                keys.s = true
-                break
-            case 'a':
-                keys.a = true
-                break
-            case 'd':
-                keys.d = true
-                break
-        }
-    })
-
-    window.addEventListener('keyup', e => {
-        switch (e.key) {
-            case 'w':
-                keys.w = false
-                break
-            case 's':
-                keys.s = false
-                break
-            case 'a':
-                keys.a = false
-                break
-            case 'd':
-                keys.d = false
-                break
-        }
-    })
-
-    window.addEventListener('click', () => {
-        if (!played) {
-            played = true
-            audio.map.play()
-        }
-    })
-}
 
 function randomEnemy() {
     return Math.floor(Math.random() * 2) == 0 ? 'Emby' : 'Draggle'
