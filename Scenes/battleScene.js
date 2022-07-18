@@ -7,8 +7,8 @@ function initBattle(playerName, enemyName) {
     document.querySelector('#menu').style.display = 'none'
     document.querySelector('#bag').style.display = 'none'
 
-    playerMonster = new Mob({...monsterList[playerName], lv: playerBag.monster[0].lv})
-    playerMonster.hp = playerBag.monster[0].hp
+    playerMonster = new Mob({...monsterList[playerName], lv: playerBag.monster[playerBag.combatIndex].lv})
+    playerMonster.hp = playerBag.monster[playerBag.combatIndex].hp
     playerMonster.position = {...battlePosition.player}
 
     enemyMonster = new Mob({...monsterList[enemyName], lv: Math.floor(Math.random() * 2 + 1)})
@@ -60,16 +60,16 @@ function initBattle(playerName, enemyName) {
 
             if (enemyMonster.hp <= 0) {
                 queue.push(() => {
-                    playerBag.monster[0].hp = playerMonster.hp
-                    playerBag.monster[0].exp += 10
+                    playerBag.monster[playerBag.combatIndex].hp = playerMonster.hp
+                    playerBag.monster[playerBag.combatIndex].exp += 10
                     playerBag.monster.forEach(monster => {
                         if (monster.name !== playerName) monster.exp += 2
                     })
-                    if (playerBag.monster[0].exp >= playerMonster.maxEXP) {
-                        playerBag.monster[0].lv++
-                        playerBag.monster[0].exp -= playerMonster.maxEXP
-                        let monster = new Mob({...monsterList[playerName], lv: playerBag.monster[0].lv})
-                        playerBag.monster[0].hp = monster.maxHP
+                    if (playerBag.monster[playerBag.combatIndex].exp >= playerMonster.maxEXP) {
+                        playerBag.monster[playerBag.combatIndex].lv++
+                        playerBag.monster[playerBag.combatIndex].exp -= playerMonster.maxEXP
+                        let monster = new Mob({...monsterList[playerName], lv: playerBag.monster[playerBag.combatIndex].lv})
+                        playerBag.monster[playerBag.combatIndex].hp = monster.maxHP
                     }
                     enemyMonster.faint()
                     audio.battle.stop()
@@ -108,7 +108,7 @@ function initBattle(playerName, enemyName) {
                 })
                 if (playerMonster.hp <= 0) {
                     queue.push(() => {
-                        playerBag.monster[0].hp = 0
+                        playerBag.monster[playerBag.combatIndex].hp = 0
                         playerMonster.faint()
                     })
                     queue.push(() => {

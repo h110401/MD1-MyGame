@@ -127,7 +127,7 @@ function openBag() {
 
 }
 
-let mob = new Mob({...monsterList[playerBag.monster[0].name], position: bagPosition})
+let mob = new Mob({...monsterList[playerBag.monster[playerBag.combatIndex].name], position: bagPosition})
 
 function initBag() {
     document.querySelector('#monsterList').replaceChildren()
