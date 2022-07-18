@@ -11,7 +11,10 @@ function initBattle(playerName, enemyName) {
     playerMonster.hp = bag.monster[bag.combatIndex].hp
     playerMonster.position = {...battlePosition.player}
 
-    enemyMonster = new Mob({...monsterList[enemyName], lv: Math.floor(Math.random() * 2 + 1)})
+    enemyMonster = new Mob({
+        ...monsterList[enemyName],
+        lv: Math.floor((bag.monster[0].lv + bag.monster[1].lv) / 2) - Math.floor(Math.random() * 3) === 0 ? 1 : Math.floor((bag.monster[0].lv + bag.monster[1].lv) / 2) - Math.floor(Math.random() * 3)
+    })
     enemyMonster.position = {...battlePosition.enemy}
     enemyMonster.isEnemy = true
     enemyMonster.flip = true
@@ -67,9 +70,10 @@ function initBattle(playerName, enemyName) {
                     })
                     bag.monster.forEach(monster => {
                         if (monster.exp >= monster.maxEXP) {
-                            monster.lv++
-                            monster.exp -= playerMonster.maxEXP
-                            let monsterr = new Mob({...monsterList[playerName], lv: monster.lv})
+                            let monsterr = new Mob({...monsterList[playerName], lv: monster.lv + 1})
+                            monster.lv = monsterr.lv
+                            monster.exp -= monster.maxEXP
+                            monster.maxEXP = monsterr.maxEXP
                             monster.hp = monsterr.maxHP
                             monster.maxHP = monsterr.maxHP
                             monster.atk = monsterr.atk
