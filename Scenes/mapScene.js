@@ -74,7 +74,7 @@ function checkBattle() {
                             opacity: 1,
                             onComplete() {
                                 window.cancelAnimationFrame(animationId)
-                                initBattle(playerBag.monster[0].name, randomEnemy())
+                                initBattle(playerBag.monster[playerBag.combatIndex].name, randomEnemy())
                                 animateBattle()
                                 gsap.to('#overlap', {
                                     opacity: 0,
