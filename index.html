@@ -19,10 +19,12 @@
         }
 
         body {
+            color: darkslategray;
             padding: 10px;
         }
 
         button {
+            color: darkslategray;
             cursor: pointer;
             font-size: 16px;
             border: 1px solid dimgray;
@@ -138,30 +140,33 @@
     </div>
 
     <div id="menu" style="position: absolute; top: 10px;right: 10px; display: none">
-        <input type="button" value="SAVE" onfocus="blur()"
-               onclick="saveGame()"
-               style="
+        <button onfocus="blur()"
+                onclick="saveGame()"
+                style="
                 padding: 12px 40px;
                 border-radius: 10px;
                 border: 3px solid dimgray;
                 cursor: pointer;
-                ">
-        <input type="button" value="MAIN MENU" onfocus="blur()"
-               onclick="backToMainMenu()"
-               style="
+                ">SAVE
+        </button>
+        <button onfocus="blur()"
+                onclick="backToMainMenu()"
+                style="
                 padding: 12px 40px;
                 border-radius: 10px;
                 border: 3px solid dimgray;
                 cursor: pointer;
-                ">
-        <input type="button" value="BAG" onfocus="blur()"
-               onclick="openBag()"
-               style="
+                ">MAIN MENU
+        </button>
+        <button onfocus="blur()"
+                onclick="openBag()"
+                style="
                 padding: 12px 40px;
                 border-radius: 10px;
                 border: 3px solid dimgray;
                 cursor: pointer;
-                ">
+                ">BAG
+        </button>
     </div>
 
     <div id="bag"
@@ -395,6 +400,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!---------------------------------------------SYSTEM---------------------------------------------------------->
+
 
 
 <script src="data/systemElement.js"></script>

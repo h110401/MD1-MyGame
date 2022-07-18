@@ -34,10 +34,13 @@ class Bag {
     }
 
     draw() {
-        c.fillStyle = 'white'
-        c.fillRect(100, 100, 100, 100)
-        c.lineWidth = 3
-        c.strokeRect(100, 100, 100, 100)
+
+        c.fillStyle = '#91C1AD'
+        c.roundRect(95,95,110,110, 20).fill()
+        c.strokeStyle = 'darkslategray'
+        c.lineWidth = 4
+        c.roundRect(95,95,110,110, 20).stroke()
+
     }
 
     close() {
@@ -73,7 +76,7 @@ class Bag {
             + this.attacksToString(this.monster[this.combatIndex].name)
 
         document.querySelectorAll('#monsterList > button').forEach((button, i) => {
-            i === this.combatIndex ? button.style.color = 'green' : button.style.color = 'black'
+            i === this.combatIndex ? button.style.color = 'green' : button.style.color = 'darkslategray'
             button.addEventListener('mouseenter', e => {
                 mob = new Mob({...monsterList[this.monster[i].name], position: this.position})
                 monsterName.innerHTML = 'Lv.' + this.monster[i].lv + ' ' + this.monster[i].name
@@ -94,7 +97,7 @@ class Bag {
                 e.currentTarget.blur()
                 this.setCombatIndex(i)
                 document.querySelectorAll('#monsterList > button').forEach((button, i) => {
-                    i === this.combatIndex ? button.style.color = 'green' : button.style.color = 'black'
+                    i === this.combatIndex ? button.style.color = 'green' : button.style.color = 'darkslategray'
                 })
             })
 
