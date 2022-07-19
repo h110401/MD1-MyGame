@@ -83,6 +83,7 @@ function backToMainMenu() {
         onComplete() {
             document.querySelector('#menu').style.display = 'none'
             cancelAnimationFrame(animationId)
+            cancelAnimationFrame(animationStartId)
             document.querySelector('#startScreen').style.display = 'flex'
             if (localStorage.length === 0) {
                 document.querySelector('#dialogueBox').style.display = 'none'
