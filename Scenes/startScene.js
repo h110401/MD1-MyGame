@@ -1,12 +1,27 @@
 initMainMenu()
 animateStart()
 
+function initMainMenu() {
+    if (localStorage.length === 0) {
+
+        bag.addMonster('Emby', 3)
+
+        bag.addMonster('Draggle', 4)
+
+    } else {
+        document.querySelector('#continueGameBtn').style.display = 'block'
+        bag.monster = JSON.parse(localStorage.getItem('playerMonsterList'))
+
+    }
+}
+
 function animateStart() {
     startScene.draw()
     c.imageSmoothingEnabled = false
     c.drawImage(title, 512 - title.width, 20, title.width * 2, title.height * 2)
     animationStartId = requestAnimationFrame(animateStart)
 }
+
 
 function startGame() {
     gsap.to('#overlap', {
@@ -26,28 +41,16 @@ function startGame() {
     })
 }
 
-function initMainMenu() {
-    if (localStorage.length === 0) {
-
-        bag.addMonster('Emby', 3)
-
-        bag.addMonster('Draggle', 4)
-
-    } else {
-        document.querySelector('#continueGameBtn').style.display = 'block'
-        bag.monster = JSON.parse(localStorage.getItem('playerMonsterList'))
-
-    }
-}
-
-
 function saveGame() {
     localStorage.setItem('playerMonsterList', JSON.stringify(bag.monster))
     localStorage.setItem('playerPosition', JSON.stringify(background.position))
 }
 
 function startNewGame() {
-    localStorage.clear()
+    if (localStorage.length !== 0) {
+        localStorage.clear()
+        window.location.reload()
+    }
     gsap.to('#overlap', {
         opacity: 1,
         onComplete() {
@@ -100,6 +103,7 @@ function closeBag() {
 function openBag() {
     bag.open()
 }
+
 
 let mob = new Mob({...monsterList[bag.monster[bag.combatIndex].name], position: bag.position})
 

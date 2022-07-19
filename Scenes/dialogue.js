@@ -13,4 +13,3 @@ document.querySelector('#dialogueBox').addEventListener('click', e => {
     isClicked = true
     timer = delay
 })
-

@@ -1,6 +1,12 @@
 
 //--------------------------------------------------------------
 
+function initMap() {
+    document.querySelector('#menu').style.display = 'block'
+    document.querySelector('#userInterface').style.display = 'none'
+    document.querySelector('#dialogueBox').style.display = 'none'
+}
+
 function animate() {
 
     countDown()
@@ -93,10 +99,3 @@ function checkBattle() {
 function randomEnemy() {
     return Math.floor(Math.random() * 2) === 0 ? 'Emby' : 'Draggle'
 }
-
-function initMap() {
-    document.querySelector('#menu').style.display = 'block'
-    document.querySelector('#userInterface').style.display = 'none'
-    document.querySelector('#dialogueBox').style.display = 'none'
-}
-
