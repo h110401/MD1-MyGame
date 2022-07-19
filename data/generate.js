@@ -4,10 +4,9 @@ const battleZones = arrayMapToPosition(battleZoneMap, Boundary)
 
 
 //Images---------------------------------------------------------------------
-const backgroundImage = new Image()
-backgroundImage.src = 'image/background/background.png'
+
 const background = new Sprite({
-    image: backgroundImage,
+    image: newImage('image/background/background.png'),
     position: {
         x: offset.x,
         y: offset.y,
@@ -17,9 +16,7 @@ const background = new Sprite({
 
 
 const foreground = new Sprite({
-    image: {
-        src: 'image/background/foreground.png'
-    },
+    image: newImage('image/background/foreground.png'),
     position: {
         x: offset.x,
         y: offset.y,
@@ -52,10 +49,10 @@ const player = new Player({
         hold: 10
     },
     sprites: {
-        up: playerUpImage,
-        down: playerDownImage,
-        left: playerLeftImage,
-        right: playerRightImage
+        up: newImage('image/player/playerUp.png'),
+        down: newImage('image/player/playerDown.png'),
+        left: newImage('image/player/playerLeft.png'),
+        right: newImage('image/player/playerRight.png'),
     }
 })
 
@@ -94,10 +91,10 @@ function arrayMapToPosition(array, className) {
 
 const title = new Image()
 title.src = 'image/Title.png'
-const startImage = new Image()
-startImage.src = 'image/startScene.png'
+
+
 const startScene = new Sprite({
-    image: startImage,
+    image: newImage('image/startScene.png'),
     position: {
         x: 0,
         y: -100,
@@ -110,4 +107,9 @@ const startScene = new Sprite({
     animate: true
 })
 
+function newImage(src) {
+    let img = new Image()
+    img.src = src
+    return img
+}
 

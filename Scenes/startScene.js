@@ -27,6 +27,7 @@ function startGame() {
     gsap.to('#overlap', {
         opacity: 1,
         onComplete() {
+            cancelAnimationFrame(animationId)
             cancelAnimationFrame(animationStartId)
             document.querySelector('#startScreen').style.display = 'none'
             if (localStorage.length === 0) {
