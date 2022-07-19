@@ -57,6 +57,7 @@ function checkBattle() {
             && player.position.x + player.width < zone.position.x + zone.width + 3
             && player.position.y + player.height > zone.position.y
             && player.position.y + player.height < zone.position.y + zone.height + 3
+            && document.querySelector('#overlap').style.opacity === '0'
         ) {
             if (bag.monster[bag.combatIndex].hp === 0) {
                 document.querySelector('#dialogueBox').style.display = 'block'
