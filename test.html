@@ -15,13 +15,13 @@
         function drawShape() {
 
             // get the canvas element using the DOM
-            var canvas = document.getElementById('mycanvas');
+            let canvas = document.getElementById('mycanvas');
 
             // Make sure we don't execute when canvas isn't supported
             if (canvas.getContext) {
 
                 // use getContext to use the canvas for drawing
-                var ctx = canvas.getContext('2d');
+                let ctx = canvas.getContext('2d');
 
                 //  draw a rectangle with default settings
                 ctx.fillRect(0,0,150,150);
@@ -38,7 +38,7 @@
 
                 // Make the new changes to the settings
                 ctx.fillStyle = '#993333'
-                ctx.globalAlpha = 0.5;
+                ctx.globalAlpha = 1;
                 ctx.fillRect(30,30,90,90);
 
                 // Restore previous state
