@@ -2,8 +2,8 @@ class Mob extends Sprite {
     constructor({
                     image,
                     position,
-                    frames,
-                    animate,
+                    frames = {max: 4, hold: 10},
+                    animate = true,
                     isEnemy = false,
                     name,
                     lv = 1

@@ -64,7 +64,7 @@ function checkBattle() {
                 document.querySelector('#dialogueBox').innerHTML = "Your monster can't fight!"
                 return
             }
-            if (player.animate && Math.random() < 0.5) {
+            if (player.animate && Math.random() < 0.3) {
 
                 battle = true
                 audio.map.stop()
