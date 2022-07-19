@@ -17,6 +17,9 @@ let offset = localStorage.length === 0 ?
     }
 
 
+const FRAME = 4
+
+
 const keys = {
     w: false,
     s: false,
