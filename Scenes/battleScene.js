@@ -11,9 +11,11 @@ function initBattle(playerName, enemyName) {
     playerMonster.hp = bag.monster[bag.combatIndex].hp
     playerMonster.position = {...battlePosition.player}
 
+    let randomLv = Math.floor(Math.random() * (bag.monster[0].lv + bag.monster[1].lv) / 2 - 2)
+
     enemyMonster = new Mob({
         ...monsterList[enemyName],
-        lv: Math.floor(Math.random() * (bag.monster[0].lv + bag.monster[1].lv) / 2 - 2) > 0 ? Math.floor(Math.random() * (bag.monster[0].lv + bag.monster[1].lv) / 2 - 2) : 1
+        lv: randomLv > 0 ? randomLv : 1
     })
     enemyMonster.position = {...battlePosition.enemy}
     enemyMonster.isEnemy = true
