@@ -13,7 +13,7 @@ function initBattle(playerName, enemyName) {
 
     enemyMonster = new Mob({
         ...monsterList[enemyName],
-        lv: Math.floor(Math.random() * (bag.monster[0] + bag.monster[1]) / 2 ) + 1
+        lv: (Math.floor(Math.random() * (bag.monster[0].lv + bag.monster[1].lv) / 2 ) + 1)
     })
     enemyMonster.position = {...battlePosition.enemy}
     enemyMonster.isEnemy = true
@@ -95,8 +95,8 @@ function initBattle(playerName, enemyName) {
                             audio.map.play()
                             initMap()
                             animate()
-                            document.querySelector('#userInterface').style.display = 'none'
-                            document.querySelector('#dialogueBox').style.display = 'none'
+                            // document.querySelector('#userInterface').style.display = 'none'
+                            // document.querySelector('#dialogueBox').style.display = 'none'
                             gsap.to('#overlap', {
                                 opacity: 0,
                                 delay: 0.4
