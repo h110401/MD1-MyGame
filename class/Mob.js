@@ -28,7 +28,7 @@ class Mob extends Sprite {
     }
 
     attack({attack, target}) {
-        console.log(this.name + 'atatck' + target.name)
+
         document.querySelector('#dialogueBox').style.display = 'block'
         document.querySelector('#dialogueBox').innerHTML = this.name + ' used ' + attack.name
 
